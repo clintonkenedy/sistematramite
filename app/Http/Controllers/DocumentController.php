@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Document;
 
 class DocumentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-documento|crear-documento|editar-documento|borrar-documento',['only'=>['index']]);
+        $this->middleware('permission:crear-documento',['only'=>['create','store']]);
+        $this->middleware('permission:editar-documento',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-documento',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,8 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        $documents = Document::paginate(5);
+        return view('documentos.index', compact('documents'));
     }
 
     /**
@@ -24,6 +33,7 @@ class DocumentController extends Controller
     public function create()
     {
         //
+        return view('documetos.crear');
     }
 
     /**
@@ -34,7 +44,12 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'titulo' => 'required',
+            'contenido' => 'required',
+        ]);
+        Document::create($request->all());
+        return redirect()->route('documentos.index');
     }
 
     /**
@@ -54,9 +69,9 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Document $documento)
     {
-        //
+        return view('documentos.editar', compact('documento'));
     }
 
     /**
@@ -66,9 +81,15 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Document $documento)
     {
         //
+        request()->validate([
+            'titulo' => 'required',
+            'contenido' => 'required',
+        ]);
+        $documento->update($request->all());
+        return redirect()->route('documentos.index');
     }
 
     /**
@@ -77,8 +98,9 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Document $documento)
     {
-        //
+        $documento->delete();
+        return redirect()->route('documentos.index');
     }
 }
