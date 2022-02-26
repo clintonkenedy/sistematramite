@@ -28,7 +28,7 @@ class SeederTablaPermisos extends Seeder
             'borrar-documento',
         ];
         foreach ($permisos as $permiso) {
-            Permission::create(['name'=>$permiso]);
+            Permission::create(['name'=>$permiso]);   
         }
     }
 }
