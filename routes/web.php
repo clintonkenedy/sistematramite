@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 //agregamos los controladores
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +27,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware'=>['auth']],function(){
+    Route::resource('roles',RolController::class);
+    Route::resource('usuarios',UsuarioController::class);
+    Route::resource('documents',DocumentController::class);
+});
