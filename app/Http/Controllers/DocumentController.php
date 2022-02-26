@@ -22,7 +22,7 @@ class DocumentController extends Controller
     public function index()
     {
         $documents = Document::paginate(5);
-        return view('documentos.index', compact('documents'));
+        return view('documents.index', compact('documents'));
     }
 
     /**
@@ -33,7 +33,7 @@ class DocumentController extends Controller
     public function create()
     {
         //
-        return view('documetos.crear');
+        return view('documents.crear');
     }
 
     /**
@@ -49,7 +49,7 @@ class DocumentController extends Controller
             'contenido' => 'required',
         ]);
         Document::create($request->all());
-        return redirect()->route('documentos.index');
+        return redirect()->route('documents.index');
     }
 
     /**
@@ -69,9 +69,9 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Document $documento)
+    public function edit(Document $document)
     {
-        return view('documentos.editar', compact('documento'));
+        return view('documents.editar', compact('document'));
     }
 
     /**
@@ -81,15 +81,15 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Document $documento)
+    public function update(Request $request, Document $document)
     {
         //
         request()->validate([
             'titulo' => 'required',
             'contenido' => 'required',
         ]);
-        $documento->update($request->all());
-        return redirect()->route('documentos.index');
+        $document->update($request->all());
+        return redirect()->route('documents.index');
     }
 
     /**
@@ -98,9 +98,9 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Document $documento)
+    public function destroy(Document $document)
     {
-        $documento->delete();
-        return redirect()->route('documentos.index');
+        $document->delete();
+        return redirect()->route('documents.index');
     }
 }

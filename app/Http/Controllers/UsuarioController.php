@@ -34,7 +34,7 @@ class UsuarioController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        return view('usuarios.create', compact('roles'));
+        return view('usuarios.crear', compact('roles'));
     }
 
     /**
@@ -51,7 +51,7 @@ class UsuarioController extends Controller
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
-        $request = $request->all();
+        $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
@@ -96,13 +96,13 @@ class UsuarioController extends Controller
     {
         $this->validate($request,[
             'name' =>'required',
-            'email' =>'required|email|unique:users,email'.$id,
+            'email' =>'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
         
         $input = $request->all();
-        if(!empty($input[password])){
+        if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
             $input = Arr::except($input,array('password'));
