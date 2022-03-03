@@ -12,7 +12,7 @@
                         <div class="card-body">
                 
             
-                        @can('documento-blog')
+                        @can('crear-documento')
                         <a class="btn btn-warning" href="{{ route('documents.create') }}">Nuevo</a>
                         @endcan
             
