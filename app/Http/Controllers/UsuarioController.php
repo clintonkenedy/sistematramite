@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 
 class UsuarioController extends Controller
@@ -108,10 +109,11 @@ class UsuarioController extends Controller
             $input = Arr::except($input,array('password'));
         }
         $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->Where('model_id',$id)->delete();
+        dd($user);
+        // $user->update($input);
+        // DB::table('model_has_roles')->Where('model_id',$id)->delete();
 
-        $user->assignRole($request->input('roles'));
+        // $user->assignRole($request->input('roles'));
         return redirect()->route('usuarios.index');
     }
 
@@ -124,6 +126,27 @@ class UsuarioController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
+        return redirect()->route('usuarios.index');
+    }
+
+    public function updatepass(Request $request){
+        
+        $this->validate($request,[
+            'password' => 'same:password_confirmation'
+        ]);
+        $usuario = Auth::user()->id;
+        $usuario = User::find($usuario);
+        $input = $request->all();
+        // dd($input);
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = Arr::except($input,array('password'));
+        }
+          
+
+        $usuario->update($input);
+
         return redirect()->route('usuarios.index');
     }
 }

@@ -32,4 +32,5 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('roles',RolController::class);
     Route::resource('usuarios',UsuarioController::class);
     Route::resource('documents',DocumentController::class);
+    Route::put('/changepass',[UsuarioController::class,'updatepass'])->name('pass.update');
 });
