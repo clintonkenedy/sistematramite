@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Document;
+use App\Models\Tipo;
 
 class DocumentController extends Controller
 {
@@ -22,7 +23,8 @@ class DocumentController extends Controller
     public function index()
     {
         $documents = Document::paginate(5);
-        return view('documents.index', compact('documents'));
+        $tipos = Tipo::all();
+        return view('documents.index', compact('documents','tipos'));
     }
 
     /**
@@ -33,7 +35,8 @@ class DocumentController extends Controller
     public function create()
     {
         //
-        return view('documents.crear');
+        $tipos = Tipo::pluck('title','title')->all();
+        return view('documents.crear',compact('tipos'));
     }
 
     /**
@@ -45,9 +48,25 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         request()->validate([
+            'tipo_id'=>'required',
             'titulo' => 'required',
             'contenido' => 'required',
+            
         ]);
+        $nametipo= $request->input('tipo_id');
+        $tipo = Tipo::where('title',$nametipo)->value('id');
+        $request->merge(['tipo_id' => $tipo]);
+
+
+        // $titulo = $request->input('titulo');
+        // $contenido = $request->input('contenido');
+
+        // $document= new Document;
+        // $document->titulo = $titulo;
+        // $document->contenido = $contenido;
+        // $document->tipo_id = $tipo;
+        // dd($document);
+        // $document->save();
         Document::create($request->all());
         return redirect()->route('documents.index');
     }

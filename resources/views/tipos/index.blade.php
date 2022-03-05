@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Documentos</h3>
+            <h3 class="page__heading">Tipos</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -12,42 +12,34 @@
                         <div class="card-body">
                 
             
-                        @can('crear-documento')
-                        <a class="btn btn-warning" href="{{ route('documents.create') }}">Nuevo</a>
-                        @endcan
+                        {{-- @can('crear-documento') --}}
+                        <a class="btn btn-warning" href="{{ route('tipos.create') }}">Nuevo</a>
+                        {{-- @endcan --}}
             
                         <table class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">                                     
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Titulo</th>
-                                    <th style="color:#fff;">Contenido</th> 
-                                    <th style="color:#fff;">tipo</th>                                    
+                                    <th style="color:#fff;">Contenido</th>                                    
                                     <th style="color:#fff;">Acciones</th>                                                                   
                               </thead>
                               <tbody>
-                            @foreach ($documents as $doc)
+                            @foreach ($tipos as $tipo)
                             <tr>
-                                <td style="display: none;">{{ $doc->id }}</td>                                
-                                <td>{{ $doc->titulo }}</td>
-                                <td>{{ $doc->contenido }}</td>
+                                <td style="display: none;">{{ $tipo->id }}</td>                                
+                                <td>{{ $tipo->title }}</td>
+                                <td>ga</td>
                                 <td>
-                                    @if(!empty($doc->tipo_id))
-                                        {{-- @foreach($usuario->getRoleNames() as $rolName) --}}
-                                            <h5><span class="badge badge-dark">{{ App\Models\Tipo::find($doc->tipo_id)->title }}</span></h5>
-                                        {{-- @endforeach --}}
-                                    @endif
-                                </td>
-                                <td>
-                                    <form action="{{ route('documents.destroy',$doc->id) }}" method="POST">                                        
-                                        @can('editar-documento')
-                                        <a class="btn btn-info" href="{{ route('documents.edit',$doc->id) }}">Editar</a>
-                                        @endcan
+                                    <form action="{{ route('tipos.destroy',$tipo->id) }}" method="POST">                                        
+                                        {{-- @can('editar-documento') --}}
+                                        <a class="btn btn-info" href="{{ route('tipos.edit',$tipo->id) }}">Editar</a>
+                                        {{-- @endcan --}}
 
                                         @csrf
                                         @method('DELETE')
-                                        @can('borrar-documento')
+                                        {{-- @can('borrar-documento') --}}
                                         <button type="submit" class="btn btn-danger">Borrar</button>
-                                        @endcan
+                                        {{-- @endcan --}}
                                     </form>
                                     
                                 </td>
@@ -69,7 +61,7 @@
 
                         <!-- Ubicamos la paginacion a la derecha -->
                         <div class="pagination justify-content-end">
-                            {!! $documents->links() !!}
+                            {!! $tipos->links() !!}
                         </div>
                         </div>
                     </div>

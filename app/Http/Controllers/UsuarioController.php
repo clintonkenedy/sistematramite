@@ -109,11 +109,11 @@ class UsuarioController extends Controller
             $input = Arr::except($input,array('password'));
         }
         $user = User::find($id);
-        dd($user);
-        // $user->update($input);
-        // DB::table('model_has_roles')->Where('model_id',$id)->delete();
+        // dd($user);
+        $user->update($input);
+        DB::table('model_has_roles')->Where('model_id',$id)->delete();
 
-        // $user->assignRole($request->input('roles'));
+        $user->assignRole($request->input('roles'));
         return redirect()->route('usuarios.index');
     }
 

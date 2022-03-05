@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\TipoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,5 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('usuarios',UsuarioController::class);
     Route::resource('documents',DocumentController::class);
     Route::put('/changepass',[UsuarioController::class,'updatepass'])->name('pass.update');
+    Route::resource('tipos', TipoController::class);
 });

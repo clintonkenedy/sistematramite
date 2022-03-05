@@ -15,8 +15,11 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('tipo_id')->unsigned()->nullable();
             $table->string('titulo');
             $table->text('contenido');
+            $table->foreign('tipo_id')->references('id')->on('tipos')
+                ->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
         });
     }
