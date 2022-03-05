@@ -7,6 +7,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TipoController;
+use App\Http\Controllers\EstudianteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::resource('forestudiante',EstudianteController::class);
 Route::group(['middleware'=>['auth']],function(){
     Route::resource('roles',RolController::class);
     Route::resource('usuarios',UsuarioController::class);

@@ -14,4 +14,10 @@ class Document extends Model
     public function tipo(){
         return $this->belongsTo(Tipo::class);
     }
+    //relacion uno a uno
+    public function estudiante()
+    {
+        return $this->hasOne(Estudiante::class);
+    }
+
 }

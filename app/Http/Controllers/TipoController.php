@@ -42,6 +42,9 @@ class TipoController extends Controller
             'title'=>'required',
         ]);
         Tipo::create($request->all());
+        // $hola=Tipo::create($request->all());
+        // $hola->id;
+        // dd($hola->id);
         return redirect()->route('tipos.index');
     }
 
