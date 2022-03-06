@@ -33,7 +33,7 @@
                                 <td>
                                     @if(!empty($doc->tipo_id))
                                         {{-- @foreach($usuario->getRoleNames() as $rolName) --}}
-                                            <h5><span class="badge badge-dark">{{ App\Models\Tipo::find($doc->tipo_id)->title }}</span></h5>
+                                            <h5><span class="badge badge-dark">{{ $doc->tipo->title }}</span></h5>
                                         {{-- @endforeach --}}
                                     @endif
                                 </td>

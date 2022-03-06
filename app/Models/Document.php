@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role;
 
 class Document extends Model
 {
@@ -18,6 +19,10 @@ class Document extends Model
     public function estudiante()
     {
         return $this->hasOne(Estudiante::class);
+    }
+    //relacion muchos a muchos
+    public function roles(){
+        return $this->belongsToMany(Role::class);
     }
 
 }

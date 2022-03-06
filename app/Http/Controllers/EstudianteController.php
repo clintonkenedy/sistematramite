@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Tipo;
 use App\Models\Document;
 use App\Models\Estudiante;
+use Illuminate\Support\Carbon;
+use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class EstudianteController extends Controller
 {
@@ -17,8 +21,10 @@ class EstudianteController extends Controller
     public function index()
     {
         //
-        $tipos = Tipo::all();
-        return redirect()->route('forestudiante.create',compact('tipos'));
+        $document = Document::find(1);
+        $role = Role::find(1);
+        return view('formest.index', compact('document', 'role'));
+        // return redirect()->route('forestudiante.create',compact('tipos'));
     }
 
     /**
@@ -52,11 +58,17 @@ class EstudianteController extends Controller
         $dni = $request->input('dni');
 
         $tipo = Tipo::where('title',$tipod)->value('id');
-
+        $codigo1 = Str::random(4);
+        $codigo2 = now()->format('mY');
         $document = new Document;
         $document->tipo_id=$tipo;
+        // $document->codigo_tramite=Str::uuid()->toString();
+        // $document->codigo_tramite=now()->format('mY');
+        $document->codigo_tramite=$codigo1.$codigo2;
+
         $document->titulo = $titulo;
         $document->contenido = $detalle;
+        // dd($document);
         $document->save();
         $estudiante = new Estudiante;
         $estudiante->documento_id=$document->id;
