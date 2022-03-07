@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
+use App\Models\DocumentRole;
 
 class EstudianteController extends Controller
 {
@@ -78,6 +79,12 @@ class EstudianteController extends Controller
         // dd($estudiante);
         $estudiante->save();
 
+        $document_role = new DocumentRole;
+        $document_role->document_id = $document->id;
+        $document_role->role_id = 2;
+        // dd($document_role);
+        $document_role->save();
+
         // $titulo = $request->input('titulo');
         // $contenido = $request->input('contenido');
 
@@ -87,7 +94,7 @@ class EstudianteController extends Controller
         // $document->tipo_id = $tipo;
         // dd($document);
         // $document->save();
-        return view('formest.index');
+        return redirect()->route('forestudiante.index');
     }
 
     /**
