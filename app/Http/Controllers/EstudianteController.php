@@ -23,7 +23,7 @@ class EstudianteController extends Controller
     {
         //
         $document = Document::find(1);
-        $role = Role::find(1);
+        $role = Role::find(2);
         return view('formest.index', compact('document', 'role'));
         // return redirect()->route('forestudiante.create',compact('tipos'));
     }
@@ -60,17 +60,23 @@ class EstudianteController extends Controller
 
         $tipo = Tipo::where('title',$tipod)->value('id');
         $codigo1 = Str::random(4);
-        $codigo2 = now()->format('mY');
+        
+        $codigo2 = now()->format('dmY');
         $document = new Document;
         $document->tipo_id=$tipo;
         // $document->codigo_tramite=Str::uuid()->toString();
         // $document->codigo_tramite=now()->format('mY');
-        $document->codigo_tramite=$codigo1.$codigo2;
+        $document->codigo_tramite=$codigo1;
 
         $document->titulo = $titulo;
         $document->contenido = $detalle;
+        $document->save();
+
+        $document->codigo_tramite = $document->id.$codigo2;
         // dd($document);
         $document->save();
+
+
         $estudiante = new Estudiante;
         $estudiante->documento_id=$document->id;
         $estudiante->nombre = $nombres;
@@ -81,7 +87,7 @@ class EstudianteController extends Controller
 
         $document_role = new DocumentRole;
         $document_role->document_id = $document->id;
-        $document_role->role_id = 2;
+        // $document_role->role_id = 2;
         // dd($document_role);
         $document_role->save();
 

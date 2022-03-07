@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Document;
+use App\Models\DocumentRole;
 use App\Models\Tipo;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class DocumentController extends Controller
 {
@@ -14,6 +18,9 @@ class DocumentController extends Controller
         $this->middleware('permission:crear-documento',['only'=>['create','store']]);
         $this->middleware('permission:editar-documento',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-documento',['only'=>['destroy']]);
+        $this->middleware('permission:enviar-documento',['only'=>['update']]);
+
+        
     }
     /**
      * Display a listing of the resource.
@@ -22,9 +29,14 @@ class DocumentController extends Controller
      */
     public function index()
     {
+        $usuario = Auth::user()->id;
+        $usuario = User::find($usuario);
+        $usuariorol = $usuario->roles->first()->documentroles;
+         dd($usuariorol);
         $documents = Document::paginate(5);
         $tipos = Tipo::all();
-        return view('documents.index', compact('documents','tipos'));
+        $oficinas = Role::all();    
+        return view('documents.index', compact('documents','tipos','oficinas','usuariorol'));
     }
 
     /**
@@ -77,9 +89,10 @@ class DocumentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Document $document)
     {
         //
+        return view('documents.ver', compact('document'));
     }
 
     /**
@@ -108,6 +121,44 @@ class DocumentController extends Controller
             'contenido' => 'required',
         ]);
         $document->update($request->all());
+        return redirect()->route('documents.index');
+    }
+
+    public function enviar(Request $request ,Document $doc)
+    {
+        //
+        // request()->validate([
+        //     'titulo' => 'required',
+        //     'contenido' => 'required',
+        // ]);
+       
+        // $documentid->request;
+        $documentrole = new DocumentRole;
+        $documentrole->document_id=$doc->id;
+        $documentrole->role_id=$request->oficina;
+        // dd($documentrole);
+        $documentrole->save();
+
+        // $document->update($request->all());
+        return redirect()->route('documents.index');
+    }
+    public function rechazar(Document $doc)
+    {
+        //
+        // request()->validate([
+        //     'titulo' => 'required',
+        //     'contenido' => 'required',
+        // ]);
+       
+        // $documentid->request;
+        $documentrole = $doc->documentroles->last();
+        // $documentrole->document_id=$doc->id;
+        // $documentrole->role_id=$request->oficina;
+        $documentrole->estado = "Rechazado";
+        // dd($documentrole);
+        $documentrole->save();
+
+        // $document->update($request->all());
         return redirect()->route('documents.index');
     }
 

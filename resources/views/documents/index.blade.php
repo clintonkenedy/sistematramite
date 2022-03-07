@@ -25,7 +25,7 @@
                                     <th style="color:#fff;">Acciones</th>                                                                   
                               </thead>
                               <tbody>
-                            @foreach ($documents as $doc)
+                            @foreach ($usuariorol->documents as $doc)
                             <tr>
                                 <td style="display: none;">{{ $doc->id }}</td>                                
                                 <td>{{ $doc->titulo }}</td>
@@ -38,11 +38,64 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <form action="{{ route('documents.destroy',$doc->id) }}" method="POST">                                        
+                                    {{-- {!! Form::open(array('route'=>'doc.update','method'=>'PUT')) !!}
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                                <label for="oficina">Tipo de oficina</label>
+                                                {!! Form::select('oficina[]',$oficinas,[],array('class'=>'form-control')) !!}
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                        </div>
+
+                                    </div>
+                                    {!! Form::close() !!} --}}
+                                    {{-- {!! Form::open(array('route'=>'doc.update','method'=>'PUT')) !!} --}}
+                                    {!! Form::model($doc,['method' => 'PUT','route' => ['doc.update',$doc->id]]) !!}
+                                    <select name="oficina" class="custom-select" id="inputGroupSelect01">
+                                        <option selected>Choose...</option>
+                                        @foreach ($oficinas as $oficina)
+                                            <option value="{{ $oficina->id }}">{{ $oficina->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+
+                                    {!! Form::close() !!}
+
+
+
+                                    <form action="{{ route('documents.destroy',$doc->id) }}" method="POST">
+                                        {{-- <form action="{{ route('documents.update',$document->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+
+                                                <button type="submit" class="btn btn-primary">Enviar</button>                            
+                                            </div>
+                                        </form>                                         --}}
+                                        <!-- Default dropright button -->
+                                        {{-- <div class="btn-group dropright">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Enviar
+                                            </button>
+                                            <div class="dropdown-menu">
+                                           
+                                                @foreach ($oficinas as $oficina)
+                                                <form action="{{ route('doc.update',$oficina->id) }}" method="GET">
+                                                    @csrf
+                                                    @method('PUT')
+        
+                                                        <button type="submit" class="dropdown-item">{{ $oficina->name }}</button>                          
+                                                    
+                                                </form>
+                                                @endforeach
+                                            </div>
+                                        </div> --}}
                                         @can('editar-documento')
                                         <a class="btn btn-info" href="{{ route('documents.edit',$doc->id) }}">Editar</a>
                                         @endcan
-
+                                        <a class="btn btn-outline-primary" href="{{ route('documents.show',$doc->id) }}">Ver</a>
                                         @csrf
                                         @method('DELETE')
                                         @can('borrar-documento')

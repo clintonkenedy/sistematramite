@@ -24,5 +24,9 @@ class Document extends Model
     public function roles(){
         return $this->belongsToMany(Role::class);
     }
+    //relacion uno a muchos
+    public function documentroles(){
+        return $this->hasMany(DocumentRole::class);
+    }
 
 }

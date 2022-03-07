@@ -17,7 +17,7 @@ class CreateDocumentRoleTable extends Migration
             $table->id();
             $table->foreignId('document_id')
                 ->constrained('documents')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('role_id')
+            $table->foreignId('role_id')->default('2')
                 ->constrained('roles')->cascadeOnDelete()->cascadeOnUpdate();
             // $table->foreignId('role_id')
             //     ->constrained('roles')->nullOnDelete()->cascadeOnUpdate();

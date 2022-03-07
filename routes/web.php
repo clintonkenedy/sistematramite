@@ -33,7 +33,10 @@ Route::resource('forestudiante',EstudianteController::class);
 Route::group(['middleware'=>['auth']],function(){
     Route::resource('roles',RolController::class);
     Route::resource('usuarios',UsuarioController::class);
-    Route::resource('documents',DocumentController::class);
     Route::put('/changepass',[UsuarioController::class,'updatepass'])->name('pass.update');
+    Route::resource('documents',DocumentController::class);
+    Route::put('/enviardoc/{doc}',[DocumentController::class,'enviar'])->name('doc.update');
+    Route::put('/rechazardoc/{doc}',[DocumentController::class,'rechazar'])->name('doc.updaterecha');
+
     Route::resource('tipos', TipoController::class);
 });

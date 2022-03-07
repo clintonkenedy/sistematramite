@@ -7,12 +7,14 @@
     <table class="table table-striped mt-2">
         <thead style="background-color:#6777ef">                                     
             <th style="display: none;">ID</th>
-            <th style="color:#fff;">Oficinas</th>                                                                 
+            <th style="color:#fff;">Oficinas</th>
+            <th style="color:#fff;">Estado</th>                                                                
         </thead>
         <tbody>
             @foreach ($document->roles as $registro)
             <tr>
                 <td>{{ $registro->name }}</td>
+                <td>{{ $registro->documentroles[0]->estado }}</td>
             </tr>
             @endforeach
         </tbody>
