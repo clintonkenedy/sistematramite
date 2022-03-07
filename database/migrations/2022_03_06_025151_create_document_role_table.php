@@ -21,7 +21,7 @@ class CreateDocumentRoleTable extends Migration
                 ->constrained('roles')->cascadeOnDelete()->cascadeOnUpdate();
             // $table->foreignId('role_id')
             //     ->constrained('roles')->nullOnDelete()->cascadeOnUpdate();
-            $table->enum('estado', ['Pendiente', 'Rechazado','Aprobado'])->default(1);
+            $table->enum('estado', ['Pendiente', 'Rechazado','Aprobado'])->default('Pendiente');
             //ENUM('PENDIENTE', 'RECHAZADO', 'APROBADO')
             $table->timestamps();
         });
