@@ -25,8 +25,10 @@ class EstudianteController extends Controller
         //
         $document = Document::find(1);
         $role = Role::find(2);
+        $tipos = Tipo::pluck('title','title')->all();
+        // dd($tipos);
         // dd($document->seguimientos);
-        return view('formest.index', compact('document', 'role'));
+        return view('formest.index', compact('document', 'role','tipos'));
         // return redirect()->route('forestudiante.create',compact('tipos'));
     }
 
@@ -55,10 +57,14 @@ class EstudianteController extends Controller
         // dd($input);
         $tipod = $request->input('tipo_id');
         $titulo = $request->input('titulo');
-        $detalle = $request->input('detalle');
-        $nombres = $request->input('nombres');
-        $apellidos = $request->input('apellidos');
+        $detalle = $request->input('contenido');
+        $nombres = $request->input('nombre');
+        $apellidosp = $request->input('apellido_paterno');
+        $apellidosm = $request->input('apellido_materno');
         $dni = $request->input('dni');
+        $direccion = $request->input('direccion');
+        $celular = $request->input('celular');
+        $correo = $request->input('correo');
 
         $tipo = Tipo::where('title',$tipod)->value('id');
         $codigo1 = Str::random(4);
@@ -82,8 +88,13 @@ class EstudianteController extends Controller
         $estudiante = new Estudiante;
         $estudiante->documento_id=$document->id;
         $estudiante->nombre = $nombres;
-        $estudiante->apellidos = $apellidos;
+        $estudiante->apellido_paterno = $apellidosp;
+        $estudiante->apellido_materno = $apellidosm;
         $estudiante->dni = $dni;
+        $estudiante->direccion = $direccion;
+        $estudiante->celular = $celular;
+        $estudiante->correo = $correo;
+
         // dd($estudiante);
         $estudiante->save();
 

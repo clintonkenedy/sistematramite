@@ -17,9 +17,12 @@ class CreateEstudiantesTable extends Migration
             $table->id();
             $table->bigInteger('documento_id')->unsigned();
             $table->string('nombre');
-            $table->string('apellidos');
+            $table->string('apellido_paterno');
+            $table->string('apellido_materno');
             $table->string('dni',8);
-
+            $table->string('direccion');
+            $table->string('celular');
+            $table->string('correo');
 
             $table->foreign('documento_id')->references('id')->on('documents')
                 ->onDelete('restrict')->onUpdate('cascade');

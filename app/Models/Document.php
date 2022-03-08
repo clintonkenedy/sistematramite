@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 class Document extends Model
 {
     use HasFactory;
-    protected $fillable = ['rol_id','tipo_id', 'titulo','contenido'];
+    protected $fillable = ['rol_id','tipo_id','codigo_tramite', 'titulo','contenido'];
 
     //relacion uno a muchos pero inversa
     public function tipo(){
