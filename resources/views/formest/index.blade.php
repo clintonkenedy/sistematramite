@@ -11,10 +11,10 @@
             <th style="color:#fff;">Estado</th>                                                                
         </thead>
         <tbody>
-            @foreach ($document->roles as $registro)
+            @foreach ($document->seguimientos as $registro)
             <tr>
-                <td>{{ $registro->name }}</td>
-                <td>{{ $registro->documentroles[0]->estado }}</td>
+                <td>{{ $registro->oficina }}</td>
+                <td>{{ $registro->estado }}</td>
             </tr>
             @endforeach
         </tbody>
@@ -35,7 +35,7 @@
             <th style="color:#fff;">Documentos</th>                                                                 
         </thead>
         <tbody>
-            @foreach ($role->documents as $registro)
+            @foreach ($role->documentos as $registro)
             <tr>
                 <td>{{ $registro->titulo }}</td>
             </tr>

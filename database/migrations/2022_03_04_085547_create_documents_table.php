@@ -15,6 +15,7 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('role_id')->nullable()->default('2')->constrained('roles')->nullOnDelete()->cascadeOnUpdate();
             $table->bigInteger('tipo_id')->unsigned()->nullable();
             $table->string('codigo_tramite');
             $table->string('titulo');

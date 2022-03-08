@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Document;
 use App\Models\DocumentRole;
+use App\Models\Seguimiento;
 use App\Models\Tipo;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -31,8 +32,8 @@ class DocumentController extends Controller
     {
         $usuario = Auth::user()->id;
         $usuario = User::find($usuario);
-        $usuariorol = $usuario->roles->first()->documentroles;
-         dd($usuariorol);
+        $usuariorol = $usuario->roles->first();
+        // dd($usuariorol->name);
         $documents = Document::paginate(5);
         $tipos = Tipo::all();
         $oficinas = Role::all();    
@@ -133,11 +134,20 @@ class DocumentController extends Controller
         // ]);
        
         // $documentid->request;
-        $documentrole = new DocumentRole;
-        $documentrole->document_id=$doc->id;
-        $documentrole->role_id=$request->oficina;
+        $seguimiento = new Seguimiento;
+        $seguimiento->document_id = $doc->id;
+        $seguimiento->oficina = $request->oficina;
+
+        // dd($seguimiento);
+        $seguimiento->save();
+        
+        $doc->role_id = Role::where('name',$request->oficina)->value('id');
+        $doc->save();
+        
+
+        // $documentrole->role_id=$request->oficina;
         // dd($documentrole);
-        $documentrole->save();
+        // $documentrole->save();
 
         // $document->update($request->all());
         return redirect()->route('documents.index');
@@ -151,12 +161,16 @@ class DocumentController extends Controller
         // ]);
        
         // $documentid->request;
-        $documentrole = $doc->documentroles->last();
+        $seguimiento = $doc->seguimientos->last();
+        
         // $documentrole->document_id=$doc->id;
         // $documentrole->role_id=$request->oficina;
-        $documentrole->estado = "Rechazado";
+        $seguimiento->estado = "Rechazado";
+        //  dd($seguimiento);
+        $seguimiento->save();
+        // $documentrole->estado = "Rechazado";
         // dd($documentrole);
-        $documentrole->save();
+        // $documentrole->save();
 
         // $document->update($request->all());
         return redirect()->route('documents.index');

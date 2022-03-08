@@ -11,6 +11,7 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 use App\Models\DocumentRole;
+use App\Models\Seguimiento;
 
 class EstudianteController extends Controller
 {
@@ -24,6 +25,7 @@ class EstudianteController extends Controller
         //
         $document = Document::find(1);
         $role = Role::find(2);
+        // dd($document->seguimientos);
         return view('formest.index', compact('document', 'role'));
         // return redirect()->route('forestudiante.create',compact('tipos'));
     }
@@ -85,11 +87,11 @@ class EstudianteController extends Controller
         // dd($estudiante);
         $estudiante->save();
 
-        $document_role = new DocumentRole;
-        $document_role->document_id = $document->id;
-        // $document_role->role_id = 2;
-        // dd($document_role);
-        $document_role->save();
+        $seguimiento = new Seguimiento;
+        $seguimiento->document_id = $document->id;
+        $seguimiento->oficina = Role::find(2)->name;
+        // dd($seguimiento);
+        $seguimiento->save();
 
         // $titulo = $request->input('titulo');
         // $contenido = $request->input('contenido');
