@@ -106,6 +106,7 @@ class EstudianteController extends Controller
         $seguimiento = new Seguimiento;
         $seguimiento->document_id = $document->id;
         $seguimiento->oficina = Role::find(2)->name;
+        $seguimiento->oficina_derivada = Role::find(2)->name;
         // dd($seguimiento);
         $seguimiento->save();
 

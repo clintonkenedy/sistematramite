@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Seguimiento extends Model
 {
     use HasFactory;
-    protected $fillable = ['document_id','estado','oficina'];
+    protected $fillable = ['document_id','estado','oficina','oficina_derivada'];
 
     //uno a muchos pero inversa
 

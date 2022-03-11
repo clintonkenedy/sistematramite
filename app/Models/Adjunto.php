@@ -14,4 +14,7 @@ class Adjunto extends Model
         return $this->belongsTo(Document::class);
     }
 
+    
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tipo;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 //spatie
@@ -41,6 +42,8 @@ class SeederTablaPermisos extends Seeder
         $rol->syncPermissions($permisos);
         $usuarioadmin->assignRole([$rol->id]);
 
+
+
         $usuariomdpartes=User::create(['name'=>'mesa',
                     'email'=>'mesa@gmail.com',
                     'password'=>bcrypt('12345678'),
@@ -49,6 +52,22 @@ class SeederTablaPermisos extends Seeder
         $permisos = Permission::pluck('id','id')->all();
         $rol->syncPermissions($permisos);
         $usuariomdpartes->assignRole([$rol->id]);
+        
+
+        $usuariomdirec=User::create(['name'=>'director',
+                    'email'=>'director@gmail.com',
+                    'password'=>bcrypt('director'),
+        ]);
+
+        $rol=Role::create(['name'=>'Director']);
+        $permisos = Permission::pluck('id','id')->all();
+        $rol->syncPermissions($permisos);
+        $usuariomdirec->assignRole([$rol->id]);
+
+
+
+        Tipo::create(['title'=>'Constancia de Estudios']);
+        Tipo::create(['title'=>'Constancia de Matricula']);
 
     }
 }

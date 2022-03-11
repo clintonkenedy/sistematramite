@@ -35,7 +35,7 @@ class DocumentController extends Controller
         $usuariorol = $usuario->roles->first();
         
         $documents = Document::paginate(5);
-        dd($documents->first()->seguimientos->last()->oficina);
+        // dd($documents->first()->seguimientos->last());
         $tipos = Tipo::all();
         $oficinas = Role::all();    
         return view('documents.index', compact('documents','tipos','oficinas','usuariorol'));
@@ -94,7 +94,8 @@ class DocumentController extends Controller
     public function show(Document $document)
     {
         //
-        return view('documents.ver', compact('document'));
+        $oficinas = Role::all(); 
+        return view('documents.ver', compact('document','oficinas'));
     }
 
     /**
@@ -133,18 +134,21 @@ class DocumentController extends Controller
         //     'titulo' => 'required',
         //     'contenido' => 'required',
         // ]);
-       
+        $segaprobar =$doc->seguimientos->last();
+        $segaprobar->estado = "Aprobado";
+        $segaprobar->save();
         // $documentid->request;
         $seguimiento = new Seguimiento;
         $seguimiento->document_id = $doc->id;
         $seguimiento->oficina = $request->oficina;
-
-        // dd($seguimiento);
+        $seguimiento->oficina_derivada = $doc->seguimientos->last()->oficina;
+        
+        //dd($doc->seguimientos->last()->oficina);
         $seguimiento->save();
         
         $doc->role_id = Role::where('name',$request->oficina)->value('id');
         $doc->save();
-        
+            
 
         // $documentrole->role_id=$request->oficina;
         // dd($documentrole);
@@ -153,7 +157,7 @@ class DocumentController extends Controller
         // $document->update($request->all());
         return redirect()->route('documents.index');
     }
-    public function rechazar(Document $doc)
+    public function rechazar(Request $request ,Document $doc)
     {
         //
         // request()->validate([
@@ -167,6 +171,12 @@ class DocumentController extends Controller
         // $documentrole->document_id=$doc->id;
         // $documentrole->role_id=$request->oficina;
         $seguimiento->estado = "Rechazado";
+        if($request->comentario){
+            $seguimiento->comentario = $request->comentario;
+        }
+        
+
+
         //  dd($seguimiento);
         $seguimiento->save();
         // $documentrole->estado = "Rechazado";
@@ -180,7 +190,7 @@ class DocumentController extends Controller
     {
  
         $seguimiento = $doc->seguimientos->last();
-        $seguimiento->estado = "Aprobado";//finalizado
+        $seguimiento->estado = "Finalizado";//finalizado
         $seguimiento->save();
         return redirect()->route('documents.index');
     }

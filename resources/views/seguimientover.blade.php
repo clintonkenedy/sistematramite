@@ -11,13 +11,16 @@
         <thead style="background-color:#6777ef">                                     
             <th style="display: none;">ID</th>
             <th style="color:#fff;">Oficinas</th>
-            <th style="color:#fff;">Estado</th>                                                                
+            <th style="color:#fff;">Estado</th>  
+            <th style="color:#fff;">Comentario</th>                                                                
+
         </thead>
         <tbody>
             @foreach ($document->seguimientos as $registro)
             <tr>
                 <td>{{ $registro->oficina }}</td>
                 <td>{{ $registro->estado }}</td>
+                <td>{{ $registro->comentario }}</td>
             </tr>
             @endforeach
         </tbody>
