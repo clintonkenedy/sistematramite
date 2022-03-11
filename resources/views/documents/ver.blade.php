@@ -106,7 +106,7 @@
                                                             <p>{{ $document->contenido }}</p>
                                                         </div>
                                                         <div class="col-12 mb-3">
-                                                            <img src="{{ $document->adjuntos->first() }}">
+                                            
                                                         </div>
                                                         <div class="col-12 mb-3">
                                                             <label for="" class="form-label">
@@ -114,7 +114,14 @@
                                                             Archivos Adjuntos:
                                                             </label>
                                                             @foreach ( $document->adjuntos as $adj )
-                                                            <p>{{ $adj }}</p> 
+                                                            <p>{{ $adj->get_contenido  }}</p> 
+                                                            <a target="_blank" href="{{ $adj->get_contenido }}">Adjunto</a>
+                                                            {{-- <iframe height="1000" width="1000" src="{{ $adj->get_contenido }}"> --}}
+
+                                                            {{-- </iframe> --}}
+                                                            <div class='embed embed-responsive' style='padding-bottom:90%'>
+                                                                <embed src="{{ $adj->get_contenido }}" type="application/pdf" width="100%" height="100%" />
+                                                            </div>
                                                             @endforeach
                                                             
                                                         </div>

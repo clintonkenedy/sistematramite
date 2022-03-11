@@ -94,6 +94,8 @@ class DocumentController extends Controller
     public function show(Document $document)
     {
         //
+       // dd($document->adjuntos->first()->get_contenido);
+
         $oficinas = Role::all(); 
         return view('documents.ver', compact('document','oficinas'));
     }
