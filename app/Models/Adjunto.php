@@ -13,5 +13,11 @@ class Adjunto extends Model
     public function documento(){
         return $this->belongsTo(Document::class);
     }
+    public function getGetContenidoAttribute(){
+        return url("storage/$this->contenido");
+    }
+
+    
+
 
 }

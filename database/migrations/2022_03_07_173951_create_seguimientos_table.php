@@ -17,8 +17,11 @@ class CreateSeguimientosTable extends Migration
             $table->id();
             $table->foreignId('document_id')->cascadeOnDelete()->cascadeOnUpdate()
                 ->constrained('documents');
-            $table->enum('estado', ['Pendiente', 'Rechazado','Aprobado'])->default('Pendiente');
+            $table->enum('estado', ['Pendiente', 'Rechazado','Aprobado','Finalizado'])->default('Pendiente');
             $table->string('oficina');
+            $table->string('oficina_derivada');
+            $table->string('comentario')->nullable();
+
             $table->timestamps();
         });
     }

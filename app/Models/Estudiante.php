@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estudiante extends Model
 {
     use HasFactory;
-    protected $fillable = ['documento_id','nombre','apellido_paterno','apellido_materno','dni','direccion','celular','correo'];
+    protected $fillable = ['document_id','nombre','apellido_paterno','apellido_materno','dni','direccion','celular','correo'];
     //uuno a uno inversa
     public function Document()
     {

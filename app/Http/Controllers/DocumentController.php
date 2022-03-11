@@ -33,8 +33,9 @@ class DocumentController extends Controller
         $usuario = Auth::user()->id;
         $usuario = User::find($usuario);
         $usuariorol = $usuario->roles->first();
-        // dd($usuariorol->name);
+        
         $documents = Document::paginate(5);
+        // dd($documents->first()->seguimientos->last());
         $tipos = Tipo::all();
         $oficinas = Role::all();    
         return view('documents.index', compact('documents','tipos','oficinas','usuariorol'));
@@ -93,7 +94,10 @@ class DocumentController extends Controller
     public function show(Document $document)
     {
         //
-        return view('documents.ver', compact('document'));
+       // dd($document->adjuntos->first()->get_contenido);
+
+        $oficinas = Role::all(); 
+        return view('documents.ver', compact('document','oficinas'));
     }
 
     /**
@@ -132,18 +136,21 @@ class DocumentController extends Controller
         //     'titulo' => 'required',
         //     'contenido' => 'required',
         // ]);
-       
+        $segaprobar =$doc->seguimientos->last();
+        $segaprobar->estado = "Aprobado";
+        $segaprobar->save();
         // $documentid->request;
         $seguimiento = new Seguimiento;
         $seguimiento->document_id = $doc->id;
         $seguimiento->oficina = $request->oficina;
-
-        // dd($seguimiento);
+        $seguimiento->oficina_derivada = $doc->seguimientos->last()->oficina;
+        
+        //dd($doc->seguimientos->last()->oficina);
         $seguimiento->save();
         
         $doc->role_id = Role::where('name',$request->oficina)->value('id');
         $doc->save();
-        
+            
 
         // $documentrole->role_id=$request->oficina;
         // dd($documentrole);
@@ -152,7 +159,7 @@ class DocumentController extends Controller
         // $document->update($request->all());
         return redirect()->route('documents.index');
     }
-    public function rechazar(Document $doc)
+    public function rechazar(Request $request ,Document $doc)
     {
         //
         // request()->validate([
@@ -166,6 +173,12 @@ class DocumentController extends Controller
         // $documentrole->document_id=$doc->id;
         // $documentrole->role_id=$request->oficina;
         $seguimiento->estado = "Rechazado";
+        if($request->comentario){
+            $seguimiento->comentario = $request->comentario;
+        }
+        
+
+
         //  dd($seguimiento);
         $seguimiento->save();
         // $documentrole->estado = "Rechazado";
@@ -179,10 +192,27 @@ class DocumentController extends Controller
     {
  
         $seguimiento = $doc->seguimientos->last();
-        $seguimiento->estado = "Aprobado";//finalizado
+        $seguimiento->estado = "Finalizado";//finalizado
         $seguimiento->save();
         return redirect()->route('documents.index');
     }
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function seguimiento(Request $request){
+        
+        $document = Document::firstWhere('codigo_tramite', $request->codseguimiento);
+        //dd($document);
+
+        return view('seguimientover', compact('document'));
+
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -195,4 +225,7 @@ class DocumentController extends Controller
         $document->delete();
         return redirect()->route('documents.index');
     }
+
+
+
 }

@@ -91,7 +91,7 @@ class EstudianteController extends Controller
 
 
         $estudiante = new Estudiante;
-        $estudiante->documento_id=$document->id;
+        $estudiante->document_id=$document->id;
         $estudiante->nombre = $nombres;
         $estudiante->apellido_paterno = $apellidosp;
         $estudiante->apellido_materno = $apellidosm;
@@ -106,6 +106,7 @@ class EstudianteController extends Controller
         $seguimiento = new Seguimiento;
         $seguimiento->document_id = $document->id;
         $seguimiento->oficina = Role::find(2)->name;
+        $seguimiento->oficina_derivada = Role::find(2)->name;
         // dd($seguimiento);
         $seguimiento->save();
 
