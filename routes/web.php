@@ -32,6 +32,7 @@ Route::get('/seguimiento', function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/seguimientoga',[DocumentController::class,'seguimiento'])->name('doc.seguimiento');
 
 Auth::routes();
 

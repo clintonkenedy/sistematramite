@@ -33,8 +33,9 @@ class DocumentController extends Controller
         $usuario = Auth::user()->id;
         $usuario = User::find($usuario);
         $usuariorol = $usuario->roles->first();
-        // dd($usuariorol->name);
+        
         $documents = Document::paginate(5);
+        dd($documents->first()->seguimientos->last()->oficina);
         $tipos = Tipo::all();
         $oficinas = Role::all();    
         return view('documents.index', compact('documents','tipos','oficinas','usuariorol'));
@@ -183,6 +184,23 @@ class DocumentController extends Controller
         $seguimiento->save();
         return redirect()->route('documents.index');
     }
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function seguimiento(Request $request){
+        
+        $document = Document::firstWhere('codigo_tramite', $request->codseguimiento);
+        //dd($document);
+
+        return view('seguimientover', compact('document'));
+
+    }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -195,4 +213,7 @@ class DocumentController extends Controller
         $document->delete();
         return redirect()->route('documents.index');
     }
+
+
+
 }

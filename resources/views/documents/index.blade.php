@@ -19,9 +19,11 @@
                         <table class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
-                                    <th style="color:#fff;">Titulo</th>
-                                    <th style="color:#fff;">Contenido</th>
-                                    <th style="color:#fff;">tipo</th>
+                                    <th style="color:#fff;">CodigoTramite</th>
+                                    <th style="color:#fff;">Tipo Doc</th>
+                                    <th style="color:#fff;">Nombre</th>
+                                    <th style="color:#fff;">Derivado por:</th>
+                                    <th style="color:#fff;">Oficina Actual:</th>
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
@@ -29,14 +31,21 @@
                             @foreach ($documents as $doc)
                             <tr>
                                 <td style="display: none;">{{ $doc->id }}</td>
-                                <td>{{ $doc->titulo }}</td>
-                                <td>{{ $doc->contenido }}</td>
+                                <td>{{ $doc->codigo_tramite }}</td>
                                 <td>
                                     @if(!empty($doc->tipo_id))
                                         {{-- @foreach($usuario->getRoleNames() as $rolName) --}}
                                             <h5><span class="badge badge-dark">{{ $doc->tipo->title }}</span></h5>
                                         {{-- @endforeach --}}
                                     @endif
+                                </td>
+
+                                <td>{{ $doc->estudiante->nombre }}</td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    {{ $doc->seguimientos->last()->oficina }},{{ $doc->seguimientos->last()->estado }} 
                                 </td>
                                 <td>
                                     {{-- {!! Form::open(array('route'=>'doc.update','method'=>'PUT')) !!}
@@ -122,14 +131,21 @@
                             @foreach ($usuariorol->documentos as $doc)
                             <tr>
                                 <td style="display: none;">{{ $doc->id }}</td>
-                                <td>{{ $doc->titulo }}</td>
-                                <td>{{ $doc->contenido }}</td>
+                                <td>{{ $doc->codigo_tramite }}</td>
                                 <td>
                                     @if(!empty($doc->tipo_id))
                                         {{-- @foreach($usuario->getRoleNames() as $rolName) --}}
                                             <h5><span class="badge badge-dark">{{ $doc->tipo->title }}</span></h5>
                                         {{-- @endforeach --}}
                                     @endif
+                                </td>
+
+                                <td>{{ $doc->estudiante->nombre }}</td>
+                                <td>
+                                    
+                                </td>
+                                <td>
+                                    {{ $doc->seguimientos->last()->oficina }},{{ $doc->seguimientos->last()->estado }} 
                                 </td>
                                 <td>
                                     {{-- {!! Form::open(array('route'=>'doc.update','method'=>'PUT')) !!}

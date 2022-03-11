@@ -91,7 +91,7 @@ class EstudianteController extends Controller
 
 
         $estudiante = new Estudiante;
-        $estudiante->documento_id=$document->id;
+        $estudiante->document_id=$document->id;
         $estudiante->nombre = $nombres;
         $estudiante->apellido_paterno = $apellidosp;
         $estudiante->apellido_materno = $apellidosm;

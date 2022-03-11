@@ -15,7 +15,9 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('documento_id')->unsigned();
+            $table->foreignId('document_id')->cascadeOnUpdate()
+                ->constrained('documents');
+            // $table->bigInteger('document_id')->unsigned();
             $table->string('nombre');
             $table->string('apellido_paterno');
             $table->string('apellido_materno');
@@ -24,8 +26,8 @@ class CreateEstudiantesTable extends Migration
             $table->string('celular');
             $table->string('correo');
 
-            $table->foreign('documento_id')->references('id')->on('documents')
-                ->onDelete('restrict')->onUpdate('cascade');
+            // $table->foreign('document_id')->references('id')->on('documents')
+            //     ->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();
         });
     }

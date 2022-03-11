@@ -15,12 +15,14 @@
                         <div class="card-body">
                           <h5 class="card-title">SEGUIMIENTO DE TRAMITE DOCUMENTARIO</h5>
                           <p class="card-text">A continuación ingrese su código de tramite:</p>
-                          {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST')) !!}
+                          {!! Form::open(array('route'=>'doc.seguimiento','method'=>'GET')) !!}
                           <div class="row">
                               <div class="col-md-4">
                                   <strong>Código de tramite:</strong>
                               </div>
-                              <div class="col-md-4"><input type="text" class="form-control"></div>
+                              <div class="col-md-4">
+                                <input name="codseguimiento" type="text" class="form-control">
+                              </div>
                               <div class="col-md-4"></div>
                           </div>
                           <div class="row mt-4">
