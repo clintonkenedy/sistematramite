@@ -10,11 +10,11 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Dashboard Content</h3>
+                            <h3 class="text-center">TRAMITE</h3>
                             <div class="row">
              
                                         <div class="card-header">
-                                            <center><h3>TRAMITE ESTUDIANTES</h3></center>
+                                            <h3>COIDO DE TRAMITE: {{ $document->codigo_tramite }}</h3>
                                         </div>
                                         <div class="card-body">
                                             
