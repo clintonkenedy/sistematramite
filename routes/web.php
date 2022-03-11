@@ -44,6 +44,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('documents',DocumentController::class);
     Route::put('/enviardoc/{doc}',[DocumentController::class,'enviar'])->name('doc.update');
     Route::put('/rechazardoc/{doc}',[DocumentController::class,'rechazar'])->name('doc.updaterecha');
+    Route::put('/finalizadodoc/{doc}',[DocumentController::class,'finalizado'])->name('doc.updatefnlzdo');
 
     Route::resource('tipos', TipoController::class);
 });

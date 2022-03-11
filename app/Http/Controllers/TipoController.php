@@ -79,10 +79,12 @@ class TipoController extends Controller
      */
     public function update(Request $request, Tipo $tipo)
     {
-        request()->validate([
-            'title'=>'required',
-        ]);
-        $tipo->update($request->all);
+        // request()->validate([
+        //     'title'=>'required',
+        // ]);
+        //dd($request);
+        $tipo->title=$request->title;
+        $tipo->save();
         return redirect()->route('tipos.index');
     
     }

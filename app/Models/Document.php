@@ -36,5 +36,10 @@ class Document extends Model
     public function seguimientos(){
         return $this->hasMany(Seguimiento::class);
     }
+    //uno a muchos
+    public function adjuntos(){
+        return $this->hasMany(Adjunto::class);
+    }
+
 
 }

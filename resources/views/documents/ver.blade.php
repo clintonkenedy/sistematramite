@@ -17,13 +17,23 @@
                                 <p>{{ $document->contenido }}</p>
                                 </div>
                             </div>
-                            <form action="{{ route('doc.updaterecha',$document->id) }}" method="POST">
+                            <form  action="{{ route('doc.updaterecha',$document->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <button type="submit" class="btn btn-danger">Rechazar</button>                            
                                 </div>
                             </form>
+
+                            <form action="{{ route('doc.updatefnlzdo',$document->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="row">
+                                    <button  type="submit" class="btn btn-success" >Finalizar</button>                            
+                                </div>
+                            </form>
+
+                        
 
                             
     
