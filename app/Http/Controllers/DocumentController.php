@@ -175,6 +175,14 @@ class DocumentController extends Controller
         // $document->update($request->all());
         return redirect()->route('documents.index');
     }
+    public function finalizado(Document $doc)
+    {
+ 
+        $seguimiento = $doc->seguimientos->last();
+        $seguimiento->estado = "Aprobado";//finalizado
+        $seguimiento->save();
+        return redirect()->route('documents.index');
+    }
 
     /**
      * Remove the specified resource from storage.

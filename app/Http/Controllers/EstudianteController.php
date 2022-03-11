@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Adjunto;
 use Illuminate\Http\Request;
 use App\Models\Tipo;
 use App\Models\Document;
@@ -54,7 +55,11 @@ class EstudianteController extends Controller
     {
         //
         $input = $request->all();
-        // dd($input);
+     
+
+      
+        
+        
         $tipod = $request->input('tipo_id');
         $titulo = $request->input('titulo');
         $detalle = $request->input('contenido');
@@ -104,6 +109,23 @@ class EstudianteController extends Controller
         // dd($seguimiento);
         $seguimiento->save();
 
+        if($request->file()!=[]){
+            $adjuntoss=$request->file();
+            $i=1;
+            foreach ($adjuntoss as $adjuntou){
+                $adjuntou = new Adjunto;
+                $adjuntou->document_id = $document->id;
+                $adjuntou->contenido = $request->file('adjunto'.$i)->store('adjuntos','public');
+                $adjuntou->save();
+                $i++;
+            }
+        }
+
+
+        
+        
+        
+        
         // $titulo = $request->input('titulo');
         // $contenido = $request->input('contenido');
 
