@@ -119,9 +119,9 @@
                                                             {{-- <iframe height="1000" width="1000" src="{{ $adj->get_contenido }}"> --}}
 
                                                             {{-- </iframe> --}}
-                                                            <div class='embed embed-responsive' style='padding-bottom:90%'>
+                                                            {{-- <div class='embed embed-responsive' style='padding-bottom:90%'>
                                                                 <embed src="{{ $adj->get_contenido }}" type="application/pdf" width="100%" height="100%" />
-                                                            </div>
+                                                            </div> --}}
                                                             @endforeach
                                                             
                                                         </div>
