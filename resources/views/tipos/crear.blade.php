@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Crear Documento</h3>
+            <h3 class="page__heading">Crear Tipo</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -22,50 +22,26 @@
                             </button>
                             </div>
                         @endif
-                        {!! Form::open(array('route'=>'documents.store','method'=>'POST')) !!}
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="titulo">Título</label>
-                                    {!! Form::text('titulo',null,array('class'=>'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="contenido">Contenido</label>
-                                    {!! Form::text('contenido',null,array('class'=>'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="tipo_id">Tipos</label>
-                                    {!! Form::select('tipo_id[]',$tipos,[],array('class'=>'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
-                        </div>
-                        {!! Form::close() !!}
-                    {{-- <form action="{{ route('documents.store') }}" method="POST">
+
+                    <form action="{{ route('tipos.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                   <label for="titulo">Título</label>
-                                   <input type="text" name="titulo" class="form-control">
+                                   <label for="title">Título</label>
+                                   <input type="text" name="title" class="form-control">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                                     
-                                <div class="form-floating">
+                                {{-- <div class="form-floating">
                                 <textarea class="form-control" name="contenido" style="height: 100px"></textarea>
                                 <label for="contenido">Contenido</label>
-                                </div>
+                                </div> --}}
                             
                             <button type="submit" class="btn btn-primary">Guardar</button>                            
                         </div>
-                    </form> --}}
+                    </form>
                     
                         </div>
                     </div>
