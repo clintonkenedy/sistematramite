@@ -113,9 +113,11 @@
                                                             <i class="fa-regular fa-file-pdf"></i>
                                                             Archivos Adjuntos:
                                                             </label>
+                                                            
+                                                           
                                                             @foreach ( $document->adjuntos as $adj )
                                                             <p>{{ $adj->get_contenido  }}</p> 
-                                                            <a target="_blank" href="{{ $adj->get_contenido }}">Adjunto</a>
+                                                            <a target="_blank" href="{{ $adj->get_contenido }}">Ajunto descargar</a>
                                                             {{-- <iframe height="1000" width="1000" src="{{ $adj->get_contenido }}"> --}}
 
                                                             {{-- </iframe> --}}
