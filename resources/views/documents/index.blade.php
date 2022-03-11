@@ -10,25 +10,25 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                
-            
+
+
                         @can('crear-documento')
                         <a class="btn btn-warning" href="{{ route('documents.create') }}">Nuevo</a>
                         @endcan
-            
+
                         <table class="table table-striped mt-2">
-                                <thead style="background-color:#6777ef">                                     
+                                <thead style="background-color:#6777ef">
                                     <th style="display: none;">ID</th>
                                     <th style="color:#fff;">Titulo</th>
-                                    <th style="color:#fff;">Contenido</th> 
-                                    <th style="color:#fff;">tipo</th>                                    
-                                    <th style="color:#fff;">Acciones</th>                                                                   
+                                    <th style="color:#fff;">Contenido</th>
+                                    <th style="color:#fff;">tipo</th>
+                                    <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
                         @if ($usuariorol->id === 1)
                             @foreach ($documents as $doc)
                             <tr>
-                                <td style="display: none;">{{ $doc->id }}</td>                                
+                                <td style="display: none;">{{ $doc->id }}</td>
                                 <td>{{ $doc->titulo }}</td>
                                 <td>{{ $doc->contenido }}</td>
                                 <td>
@@ -72,7 +72,7 @@
                                             @csrf
                                             @method('PUT')
 
-                                                <button type="submit" class="btn btn-primary">Enviar</button>                            
+                                                <button type="submit" class="btn btn-primary">Enviar</button>
                                             </div>
                                         </form>                                         --}}
                                         <!-- Default dropright button -->
@@ -81,14 +81,14 @@
                                             Enviar
                                             </button>
                                             <div class="dropdown-menu">
-                                           
+
                                                 @foreach ($oficinas as $oficina)
                                                 <form action="{{ route('doc.update',$oficina->id) }}" method="GET">
                                                     @csrf
                                                     @method('PUT')
-        
-                                                        <button type="submit" class="dropdown-item">{{ $oficina->name }}</button>                          
-                                                    
+
+                                                        <button type="submit" class="dropdown-item">{{ $oficina->name }}</button>
+
                                                 </form>
                                                 @endforeach
                                             </div>
@@ -103,7 +103,7 @@
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                         @endcan
                                     </form>
-                                    
+
                                 </td>
                                 {{-- <td>
                                     @can('editar-documento')
@@ -112,16 +112,16 @@
                                     @can('borrar-documento')
                                     {!! Form::open(['method'=>'DELETE','route'=>['documents.destroy',$documento->id],'style'=>'display:inline']) !!}
                                         {!! Form::submit('Borrar',['class'=>'btn btn-danger']) !!}
-                                    {!! Form::close() !!}  
+                                    {!! Form::close() !!}
                                     @endcan
-                                    
+
                                 </td> --}}
                             </tr>
                             @endforeach
                         @else
                             @foreach ($usuariorol->documentos as $doc)
                             <tr>
-                                <td style="display: none;">{{ $doc->id }}</td>                                
+                                <td style="display: none;">{{ $doc->id }}</td>
                                 <td>{{ $doc->titulo }}</td>
                                 <td>{{ $doc->contenido }}</td>
                                 <td>
@@ -165,7 +165,7 @@
                                             @csrf
                                             @method('PUT')
 
-                                                <button type="submit" class="btn btn-primary">Enviar</button>                            
+                                                <button type="submit" class="btn btn-primary">Enviar</button>
                                             </div>
                                         </form>                                         --}}
                                         <!-- Default dropright button -->
@@ -174,14 +174,14 @@
                                             Enviar
                                             </button>
                                             <div class="dropdown-menu">
-                                           
+
                                                 @foreach ($oficinas as $oficina)
                                                 <form action="{{ route('doc.update',$oficina->id) }}" method="GET">
                                                     @csrf
                                                     @method('PUT')
-        
-                                                        <button type="submit" class="dropdown-item">{{ $oficina->name }}</button>                          
-                                                    
+
+                                                        <button type="submit" class="dropdown-item">{{ $oficina->name }}</button>
+
                                                 </form>
                                                 @endforeach
                                             </div>
@@ -196,7 +196,7 @@
                                         <button type="submit" class="btn btn-danger">Borrar</button>
                                         @endcan
                                     </form>
-                                    
+
                                 </td>
                                 {{-- <td>
                                     @can('editar-documento')
@@ -205,15 +205,15 @@
                                     @can('borrar-documento')
                                     {!! Form::open(['method'=>'DELETE','route'=>['documents.destroy',$documento->id],'style'=>'display:inline']) !!}
                                         {!! Form::submit('Borrar',['class'=>'btn btn-danger']) !!}
-                                    {!! Form::close() !!}  
+                                    {!! Form::close() !!}
                                     @endcan
-                                    
+
                                 </td> --}}
                             </tr>
                             @endforeach
                         @endif
-                            
-                            
+
+
                             </tbody>
                         </table>
 

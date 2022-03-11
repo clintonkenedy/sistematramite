@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('web/css/style.css') }}"> --}}
+    <style>
+        body{
+            background-color: #1F365C;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/b0ad45792a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
@@ -24,7 +30,7 @@
             <div class="row">
                 <div class="col-md-6 offset-md-3">
                     <div class="login-brand">
-                        <img src="{{ asset('img/logo.png') }}" alt="logo" width="100"
+                        <img src="https://iestphuancane.edu.pe/wp-content/uploads/2021/07/insignia2.png" alt="logo" width="100%"
                              class="shadow-light">
                     </div>
                     @yield('content')

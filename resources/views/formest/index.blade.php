@@ -1,143 +1,138 @@
 @extends('layouts.formbase')
 
+@include('formest.header')
+
 @section('contenidoform')
-<header>
-    <div class="px-3 py-2 bg-dark text-white">
-      <div class="container">
 
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-            <h2>SISTEMA DE TRAMITES</h2>
-          </a>
-
-          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-            <li>
-              <a href="#" class="nav-link text-secondary">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg>
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
-                Dashboard
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
-                Orders
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link text-white">
-                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
-                Customers
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
 <div class="container">
     <div class="row">
-    
-                    
-        {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST','class'=>'mt-4')) !!}
-        <h2>FORMULARIO ESTUDIANTES</h2>
-        <div class="card">
+        <div class="col-md-10 offset-md-1 mt-4">
+        <div class="card border-dark">
+            <div class="card-header">
+                <center><h3>TRAMITE ESTUDIANTES</h3></center>
+            </div>
             <div class="card-body">
-                <h5 class="card-title">Datos Personales</h1>    
-        
-        
-        
-
+                {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST','class'=>'mt-2')) !!}
+        <div class="card border-dark">
+            <h4 class="card-header border-dark">Datos Personales</h4>
+            <div class="card-body">
                 <div class="row">
-
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombres: </label>
-                        {!! Form::text('nombre',null,array('class'=>'form-control')) !!}
+                    <div class="col-md-6 mb-3">
+                        <label for="apellido_paterno" class="form-label">
+                        <i class="fa-regular fa-user"></i>
+                            Apellido Paterno:
+                        <span style="color: red;">*</span>
+                        </label>
+                        {!! Form::text('apellido_paterno',null,array('class'=>'form-control','placeholder'=>'Ingrese su apellido paterno')) !!}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="apellido_materno" class="form-label">
+                            <i class="fa-regular fa-user"></i>
+                            Apellido Materno:
+                            <span style="color: red;">*</span></label>
+                        {!! Form::text('apellido_materno',null,array('class'=>'form-control','placeholder'=>'Ingrese su apellido materno')) !!}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="nombre" class="form-label">
+                            <i class="fa-regular fa-user"></i>
+                            Nombres:
+                        <span style="color: red;">*</span></label>
+                        {!! Form::text('nombre',null,array('class'=>'form-control','placeholder'=>'Ingrese sus nombres')) !!}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="dni" class="form-label">
+                            <i class="fa-regular fa-id-card"></i>
+                            DNI:
+                        <span style="color: red;">*</span>
+                        </label>
+                        {!! Form::text('dni',null,array('class'=>'form-control','placeholder'=>'Número de DNI')) !!}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="celular" class="form-label">
+                            <i class="fa fa-phone"></i>
+                            Celular:
+                            <span style="color: red;">*</span>
+                        </label>
+                        {!! Form::text('celular',null,array('class'=>'form-control','placeholder'=>'Ingrese su celular')) !!}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="correo" class="form-label">
+                        <i class="fa-regular fa-envelope"></i>
+                            Correo Electronico:
+                            <span style="color: red;">*</span>
+                        </label>
+                        {!! Form::text('correo',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electronico')) !!}
                     </div>
                     <div class="mb-3">
-                        <label for="apellido_paterno class="form-label">Apellido Paterno: </label>
-                        {!! Form::text('apellido_paterno',null,array('class'=>'form-control')) !!}
-                    </div>
-                    <div class="mb-3">
-                        <label for="apellido_materno" class="form-label">Apellido Materno: </label>
-                        {!! Form::text('apellido_materno',null,array('class'=>'form-control')) !!}
-                    </div>
-                    <div class="mb-3">
-                        <label for="dni" class="form-label">DNI: </label>
-                        {!! Form::text('dni',null,array('class'=>'form-control')) !!}
-                    </div>
-                    <div class="mb-3">
-                        <label for="direccion" class="form-label">Dirección: </label>
-                        {!! Form::text('direccion',null,array('class'=>'form-control')) !!}
-                    </div>
-                    <div class="mb-3">
-                        <label for="celular" class="form-label">Celular: </label>
-                        {!! Form::text('celular',null,array('class'=>'form-control')) !!}
-                    </div>
-                    <div class="mb-3">
-                        <label for="correo" class="form-label">Correo Electronico: </label>
-                        {!! Form::text('correo',null,array('class'=>'form-control')) !!}
+                        <label for="direccion" class="form-label">
+                        <i class="fa fa-house"></i>
+                        Dirección:
+                        <span style="color: red;">*</span>
+                        </label>
+                        {!! Form::text('direccion',null,array('class'=>'form-control','placeholder'=>'Ingrese su dirección')) !!}
                     </div>
                 </div>
             </div>
         </div>
-                    {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <label for="tipo_id">Tipo de documento</label>
-                            {!! Form::select('tipo_id[]',$tipos,[],array('class'=>'form-control')) !!}
-                        </div>
-                    </div> --}}
-                    
-
-
-                    <div class="card mt-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Datos del Tramite</h1>
-                            <div class="mb-3">
-                                <label for="titulo" class="form-label">Titulo: </label>
-                                {!! Form::text('titulo',null,array('class'=>'form-control')) !!}
-                            </div>
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">Asunto: </label>
-                                {!! Form::select('tipo_id[]',$tipos,[],array('class'=>'form-control')) !!}
-                            </div>
-                            <div class="mb-3">
-                                <label for="contenido" class="form-label">Detalle: </label>
-                                {!! Form::textarea('contenido',null,array('class'=>'form-control','placeholder'=>'OPCIONAL','rows'=>'3')) !!}
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label">Archivos Adjuntos: </label>
-                                <input type="file" class="form-control" aria-label="Upload">
-                            </div>
-                        </div>
+        <div class="card border-dark mt-4">
+            <h4 class="card-header border-dark">Datos del Documento</h4>
+            <div class="card-body">
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Titulo: </label>
+                        {!! Form::text('titulo','titulo',array('class'=>'form-control')) !!}
                     </div>
-                    <div class="row mt-4 mb-4">
-                        <div class="col-4"></div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary">Enviar Tramite</button>
-                            <a href="/" class="btn btn-danger">Cancelar</a>
-                        </div>
-                        <div class="col-4"></div>
+                    <div class="mb-3">
+                        <label class="form-label" for="inputGroupSelect01">
+
+                        <i class="fa-regular fa-file"></i>
+                        Tipo de Documento:
+                        <span style="color: red;">*</span>
+                        </label>
+                        {!! Form::select('tipo_id[]',$tipos,[],array('class'=>'form-select')) !!}
                     </div>
+                    <div class="mb-3">
+                        <label for="contenido" class="form-label">
+                        <i class="fa-regular fa-file-lines"></i>
+                        Detalle:
 
-                    {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div> --}}
-                
-            
-
+                        </label>
+                        {!! Form::textarea('contenido',null,array('class'=>'form-control','placeholder'=>'OPCIONAL','rows'=>'3')) !!}
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">
+                        <i class="fa-regular fa-file-pdf"></i>
+                        Archivos Adjuntos:
+                        </label>
+                    </div>
+                    <div class="col-md-10" id="masadjuntos">
+                        <input type="file" class="form-control mb-2" aria-label="Upload"   name="adjunto1">
+                    </div>
+                    <div id="mas" class="col-md-2">
+                        <a  class="btn btn-warning" onclick="adjuntos()">Agregar Archivo</a>
+                    </div>
+                    <div class="col-md-10">
+                        <span style="color: red;">Solo archivos no mayor a 15 MB de tamaño.</span>
+                    </div>
+                    <div id="max" class="col-md-2">
+                        <span style="color: red;">Máximo 3 archivos.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4 mb-4">
+            <center class="">
+                <button type="submit" class="btn btn-primary">Enviar Tramite</button>
+                <a href="/" class="btn btn-danger">Cancelar</a>
+            </center>
+        </div>
         {!! Form::close() !!}
+    </div>
+            </div>
+        </div>
+
+
+        </div>
     </div>
 </div>
   <footer class="bg-secondary" style="width: 100%;">
