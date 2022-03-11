@@ -17,7 +17,7 @@
     <style>
 
         html, body {
-                        background-color: #fff;
+                        background-color: #f3f0f7;
                         font-family: 'Roboto', sans-serif;
                         height: 100vh;
                         margin: 0;

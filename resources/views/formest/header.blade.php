@@ -51,7 +51,7 @@
               </a>
             </li>
             <li>
-              <a href="/" class="nav-link text-light">
+              <a href="/seguimiento" class="nav-link text-light">
                 Seguimiento
               </a>
             </li>
