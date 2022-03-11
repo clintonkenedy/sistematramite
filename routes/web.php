@@ -27,6 +27,10 @@ Route::get('/formestd', function () {
     return view('formest.index');
 });
 
+Route::get('/seguimiento', function () {
+    return view('seguimiento');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
