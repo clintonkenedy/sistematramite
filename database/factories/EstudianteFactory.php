@@ -14,7 +14,14 @@ class EstudianteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            // 'document_id'=> 11,
+            'nombre'=> $this->faker->name(),
+            'apellido_paterno'=> $this->faker->lastName(),
+            'apellido_materno'=> $this->faker->lastName(),
+            'dni'=> $this->faker->numerify(),
+            'direccion'=> $this->faker->address(),
+            'celular'=> $this->faker->phoneNumber(),
+            'correo'=> 'nombre'.'@gmail.com',
         ];
     }
 }

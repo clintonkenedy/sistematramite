@@ -9,6 +9,7 @@ use App\Models\Seguimiento;
 use App\Models\Tipo;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Shmop;
 use Spatie\Permission\Models\Role;
 
 class DocumentController extends Controller
@@ -34,11 +35,26 @@ class DocumentController extends Controller
         $usuario = User::find($usuario);
         $usuariorol = $usuario->roles->first();
         
+        if($usuariorol->id==1){
+            // $docs = Document::paginate(5);
+            $docs = Document::all();
+            // $usuarioroldocs = $usuariorol->documentos;
+            $docs = $docs->filter(function ($doc) {
+                return $doc->seguimientos->last()->estado == 'Pendiente';
+            });
+            // dd($docs);
+        }else{
+            $usuarioroldocs = $usuariorol->documentos;
+            $docs = $usuarioroldocs->filter(function ($doc) {
+                return $doc->seguimientos->last()->estado == 'Pendiente';
+            });
+        }
+
         $documents = Document::paginate(5);
-        // dd($documents->first()->seguimientos->last());
+        //dd($usuariorol->documentos->first()->seguimientos->last()->estado);
         $tipos = Tipo::all();
         $oficinas = Role::all();    
-        return view('documents.index', compact('documents','tipos','oficinas','usuariorol'));
+        return view('documents.index', compact('documents','tipos','oficinas','usuariorol','docs'));
     }
 
     /**
@@ -211,7 +227,57 @@ class DocumentController extends Controller
         return view('seguimientover', compact('document'));
 
     }
+    public function rechazados(){
 
+        $usuario = Auth::user()->id;
+        $usuario = User::find($usuario);
+        $usuariorol = $usuario->roles->first();
+        if($usuariorol->id==1){
+            $docs = Document::all();
+            // $usuarioroldocs = $usuariorol->documentos;
+            $docs = $docs->filter(function ($doc) {
+                return $doc->seguimientos->last()->estado == 'Rechazado';
+            });
+        }else{
+            $usuarioroldocs = $usuariorol->documentos;
+            $docs = $usuarioroldocs->filter(function ($doc) {
+                return $doc->seguimientos->last()->estado == 'Rechazado';
+            });
+        }
+        
+        
+        $documents = Document::paginate(5);
+        // dd($usuariorol->documentos->first()->seguimientos->last()->estado);
+        // $plucked = $usuarioroldocs->pluck('speakers.first_day');
+        // $filtered = $usuarioroldocs->where('deleted_at', '!=', null);
+        
+        // $docs = $docspaginate(5);
+        // dd($docs);
+        $tipos = Tipo::all();
+        $oficinas = Role::all();    
+        return view('documents.rechazados', compact('docs','tipos','oficinas','usuariorol'));
+
+    }
+
+    public function finalizados(){
+        $usuario = Auth::user()->id;
+        $usuario = User::find($usuario);
+        $usuariorol = $usuario->roles->first();
+        if($usuariorol->id==1){
+            $docs = Document::all();
+            // $usuarioroldocs = $usuariorol->documentos;
+            $docs = $docs->filter(function ($doc) {
+                return $doc->seguimientos->last()->estado == 'Finalizado';
+            });
+        }else{
+            $usuarioroldocs = $usuariorol->documentos;
+            $docs = $usuarioroldocs->filter(function ($doc) {
+                return $doc->seguimientos->last()->estado == 'Finalizado';
+            });
+        }
+   
+        return view('documents.finalizados', compact('docs'));
+    }
 
 
     /**

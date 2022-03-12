@@ -43,6 +43,9 @@ Route::group(['middleware'=>['auth']],function(){
     Route::resource('usuarios',UsuarioController::class);
     Route::put('/changepass',[UsuarioController::class,'updatepass'])->name('pass.update');
     Route::resource('documents',DocumentController::class);
+    Route::get('documento/rechazados',[DocumentController::class,'rechazados'])->name('doc.rechazados');
+    Route::get('documento/finalizados',[DocumentController::class,'finalizados'])->name('doc.finalizados');
+
     Route::put('/enviardoc/{doc}',[DocumentController::class,'enviar'])->name('doc.update');
     Route::put('/rechazardoc/{doc}',[DocumentController::class,'rechazar'])->name('doc.updaterecha');
     Route::put('/finalizadodoc/{doc}',[DocumentController::class,'finalizado'])->name('doc.updatefnlzdo');
