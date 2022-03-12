@@ -11,37 +11,65 @@
 
     <!-- Template CSS -->
     {{-- <link rel="stylesheet" href="{{ asset('web/css/style.css') }}"> --}}
-    <style>
-        body{
-            background-color: #1F365C;
-        }
-    </style>
     <script src="https://kit.fontawesome.com/b0ad45792a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <style>
+        html,
+        body {
+        height: 100%;
+        }
+
+        body {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #1F365C;
+        }
+
+        .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+        }
+
+        .form-signin .checkbox {
+        font-weight: 400;
+        }
+
+        .form-signin .form-floating:focus-within {
+        z-index: 2;
+        }
+
+        .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        }
+
+        .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        }
+    </style>
 </head>
 
-<body>
-<div id="app">
-    <section class="section">
+<body class="text-center">
+{{-- <div id="app"> --}}
+    {{-- <section class="section">
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-6 offset-md-3">
-                    <div class="login-brand">
-                        <img src="https://iestphuancane.edu.pe/wp-content/uploads/2021/07/insignia2.png" alt="logo" width="100%"
-                             class="shadow-light">
-                    </div>
-                    @yield('content')
-                    <div class="simple-footer">
-{{--                        Copyright &copy; {{ getSettingValue('application_name') }}  {{ date('Y') }}--}}
-                    </div>
+                <div class="col-md-6 offset-md-3"> --}}
+                        @yield('content')
+
+                    {{-- <div class="simple-footer"> --}}
+                    {{-- </div>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </section> --}}
+{{-- </div> --}}
 
 <!-- General JS Scripts -->
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>

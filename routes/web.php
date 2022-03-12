@@ -31,6 +31,14 @@ Route::get('/seguimiento', function () {
     return view('seguimiento');
 });
 
+Route::get('/fordocente', function () {
+    return view('formdocent.index');
+});
+
+Route::get('/forexterno', function () {
+    return view('formextern.index');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/seguimientoga',[DocumentController::class,'seguimiento'])->name('doc.seguimiento');
 
