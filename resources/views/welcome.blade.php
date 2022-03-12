@@ -6,7 +6,7 @@
 <div class="container-fluid">
 <div class="row">
     <div class="col-md-4" style="background-color: #5d4a5b; padding-bottom: 6em; padding-top: 7em;">
-    <a href="#" class="-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none text-dark">
+    <a href="/forexterno" class="-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none text-dark">
         <img alt="image" src="{{ asset('img/man.svg') }}" class="rounded mx-auto d-block">
         <div class="container-fluid mt-4">
             <div class="row">
@@ -47,7 +47,7 @@
         </a>
     </div>
     <div class="col-md-4" style="background-color: #96b2af; padding-bottom: 8em; padding-top: 7em;">
-        <a href="#" class="-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none text-dark">
+        <a href="/fordocente" class="-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none text-dark">
             <img alt="image" src="{{ asset('img/teacher.svg') }}" class="rounded mx-auto d-block">
             <div class="container-fluid mt-4">
                 <div class="row">
@@ -82,7 +82,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <p class="text-white text-center"><small>Oficina de Tecnologías de Información</small></p>
+                <p class="text-white text-center"><small>Oficina de Tecnología</small></p>
 
             </div>
         </div>
