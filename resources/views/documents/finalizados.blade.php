@@ -119,12 +119,14 @@
                             </tr>
                             @endforeach
                         
+
+
                             </tbody>
                         </table>
 
                         <!-- Ubicamos la paginacion a la derecha -->
                         <div class="pagination justify-content-end">
-                            {!! $documents->links() !!}
+                            {{-- {!! $docs->links() !!} --}}
                         </div>
                         </div>
                     </div>
