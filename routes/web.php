@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocenteController;
 use Illuminate\Support\Facades\Route;
 //agregamos los controladores
 use App\Http\Controllers\HomeController;
@@ -8,6 +9,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\ExternoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,21 +26,12 @@ use App\Http\Controllers\EstudianteController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/formestd', function () {
-    return view('formest.index');
-});
+
 
 Route::get('/seguimiento', function () {
     return view('seguimiento');
 });
 
-Route::get('/fordocente', function () {
-    return view('formdocent.index');
-});
-
-Route::get('/forexterno', function () {
-    return view('formextern.index');
-});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/seguimientoga',[DocumentController::class,'seguimiento'])->name('doc.seguimiento');
@@ -46,6 +40,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('forestudiante',EstudianteController::class);
+Route::resource('fordocente',DocenteController::class);
+Route::resource('forexterno',ExternoController::class);
+
 Route::group(['middleware'=>['auth']],function(){
     Route::resource('roles',RolController::class);
     Route::resource('usuarios',UsuarioController::class);

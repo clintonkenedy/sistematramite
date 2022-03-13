@@ -12,7 +12,7 @@
                 <center><h3>TRAMITE EXTERNO</h3></center>
             </div>
             <div class="card-body">
-                {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST','class'=>'mt-2','files' => true)) !!}
+                {!! Form::open(array('route'=>'forexterno.store','method'=>'POST','class'=>'mt-2','files' => true)) !!}
 
         <div class="card border-dark">
             <h4 class="card-header border-dark">Datos</h4>
@@ -24,21 +24,21 @@
                             DNI/RUC:
                         <span style="color: red;">*</span>
                         </label>
-                        {!! Form::text('apellido_paterno',null,array('class'=>'form-control','placeholder'=>'Ingrese su documento')) !!}
+                        {!! Form::text('ruc',null,array('class'=>'form-control','placeholder'=>'Ingrese su documento')) !!}
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="apellido_materno" class="form-label">
                             <i class="fa-regular fa-user"></i>
                             Nombre:
                             <span style="color: red;">*</span></label>
-                        {!! Form::text('apellido_materno',null,array('class'=>'form-control','placeholder'=>'Ingrese su nombre')) !!}
+                        {!! Form::text('nombre',null,array('class'=>'form-control','placeholder'=>'Ingrese su nombre')) !!}
                     </div>
                      <div class="col-md-6 mb-3">
                         <label for="nombre" class="form-label">
                             <i class="fa fa-phone"></i>
                             Celular:
                         <span style="color: red;">*</span></label>
-                        {!! Form::text('nombre',null,array('class'=>'form-control','placeholder'=>'Ingrese su telefono')) !!}
+                        {!! Form::text('celular',null,array('class'=>'form-control','placeholder'=>'Ingrese su telefono')) !!}
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="dni" class="form-label">
@@ -46,7 +46,7 @@
                             Correo Elctronico:
                         <span style="color: red;">*</span>
                         </label>
-                        {!! Form::text('dni',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electrónico')) !!}
+                        {!! Form::text('correo',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electrónico')) !!}
                     </div>
                     {{--<div class="col-md-6 mb-3">
                         <label for="celular" class="form-label">
@@ -90,7 +90,7 @@
                         Tipo de Documento:
                         <span style="color: red;">*</span>
                         </label>
-                        {!! Form::select('tipo_id[]',array('class'=>'form-select')) !!}
+                        {!! Form::select('tipo_id[]',$tipos,[],array('class'=>'form-select')) !!}
                     </div>
                     <div class="mb-3">
                         <label for="contenido" class="form-label">
