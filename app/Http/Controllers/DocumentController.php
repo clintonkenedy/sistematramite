@@ -113,7 +113,16 @@ class DocumentController extends Controller
        // dd($document->adjuntos->first()->get_contenido);
 
         $oficinas = Role::all(); 
-        return view('documents.ver', compact('document','oficinas'));
+        if($document->estudiante){
+            $cliente=$document->estudiante;
+        }
+        elseif($document->docente){
+            $cliente=$document->docente;
+        }
+        else{
+            $cliente=$document->externo;
+        }
+        return view('documents.ver', compact('document','oficinas','cliente'));
     }
 
     /**

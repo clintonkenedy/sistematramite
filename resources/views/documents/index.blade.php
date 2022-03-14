@@ -39,8 +39,14 @@
                                         {{-- @endforeach --}}
                                     @endif
                                 </td>
-
-                                <td>{{ $doc->estudiante->nombre }}</td>
+                                @if (!empty($doc->estudiante))
+                                    <td>{{ $doc->estudiante->nombre }}</td>
+                                @elseif (!empty($doc->docente))
+                                    <td>{{ $doc->docente->nombre }}</td>
+                                @else
+                                    <td>{{ $doc->externo->nombre }}</td>
+                                @endif
+                                
                                 <td>
                                     {{ $doc->seguimientos->last()->oficina_derivada }}
                                 </td>

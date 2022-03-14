@@ -27,21 +27,21 @@
                                                             <i class="fa-regular fa-user"></i>
                                                             <b>Apellido Paterno:</b>
                                                             </label>
-                                                            <p>{{ $document->estudiante->apellido_paterno }}</p>
+                                                            <p>{{ $cliente->apellido_paterno }}</p>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <label for="apellido_materno" class="form-label">
                                                                 <i class="fa-regular fa-user"></i>
                                                                 <b>Apellido Materno:</b>
                                                             </label>
-                                                            <p>{{ $document->estudiante->apellido_materno }}</p>                                                
+                                                            <p>{{ $cliente->apellido_materno }}</p>                                                
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <label for="nombre" class="form-label">
                                                                 <i class="fa-regular fa-user"></i>
                                                                 <b>Nombres:</b>
                                                             </label>
-                                                            <p>{{ $document->estudiante->nombre }}</p>                                                
+                                                            <p>{{ $cliente->nombre }}</p>                                                
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <label for="dni" class="form-label">
@@ -49,7 +49,7 @@
                                                                 <b>DNI:</b>
                                                             
                                                             </label>
-                                                            <p>{{ $document->estudiante->dni }}</p>                                                
+                                                            <p>{{ $cliente->dni }}</p>                                                
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <label for="celular" class="form-label">
@@ -57,7 +57,7 @@
                                                                 <b>Celular:</b>
                                                                 
                                                             </label>
-                                                            <p>{{ $document->estudiante->celular }}</p>                                                
+                                                            <p>{{ $cliente->celular }}</p>                                                
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <label for="correo" class="form-label">
@@ -65,7 +65,7 @@
                                                                 <b>Correo Electronico:</b>
                                                                 
                                                             </label>
-                                                            <p>{{ $document->estudiante->correo }}</p>
+                                                            <p>{{ $cliente->correo }}</p>
                                                         </div>
                                                         <div class="col-md-6 mb-3">
                                                             <label for="direccion" class="form-label">
@@ -73,7 +73,7 @@
                                                                 <b>Dirección:</b>
                                                                 
                                                             </label>
-                                                            <p>{{ $document->estudiante->direccion }}</p>
+                                                            <p>{{ $cliente->direccion }}</p>
                                                         </div>
                                                         
                                                     </div>

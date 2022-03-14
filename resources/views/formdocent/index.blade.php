@@ -12,7 +12,7 @@
                 <center><h3>TRAMITE DOCENTES</h3></center>
             </div>
             <div class="card-body">
-                {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST','class'=>'mt-2','files' => true)) !!}
+                {!! Form::open(array('route'=>'fordocente.store','method'=>'POST','class'=>'mt-2','files' => true)) !!}
 
         <div class="card border-dark">
             <h4 class="card-header border-dark">Datos Personales</h4>
@@ -64,14 +64,14 @@
                         </label>
                         {!! Form::text('correo',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electronico')) !!}
                     </div>
-                    {{-- <div class="mb-3">
+                    <div class="mb-3">
                         <label for="direccion" class="form-label">
                         <i class="fa fa-house"></i>
                         Dirección:
                         <span style="color: red;">*</span>
                         </label>
                         {!! Form::text('direccion',null,array('class'=>'form-control','placeholder'=>'Ingrese su dirección')) !!}
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,7 +90,7 @@
                         Tipo de Documento:
                         <span style="color: red;">*</span>
                         </label>
-                        {!! Form::select('tipo_id[]',array('class'=>'form-select')) !!}
+                        {!! Form::select('tipo_id[]',$tipos,[],array('class'=>'form-select')) !!}
                     </div>
                     <div class="mb-3">
                         <label for="contenido" class="form-label">

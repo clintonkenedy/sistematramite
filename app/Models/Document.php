@@ -20,6 +20,16 @@ class Document extends Model
     {
         return $this->hasOne(Estudiante::class);
     }
+    //relacion uno a uno
+    public function docente()
+    {
+        return $this->hasOne(Docente::class);
+    }
+    //relacion uno a uno
+    public function externo()
+    {
+        return $this->hasOne(Externo::class);
+    }
     //relacion muchos a muchos
     // public function roles(){
     //     return $this->belongsToMany(Role::class);
