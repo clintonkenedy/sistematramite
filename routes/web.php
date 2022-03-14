@@ -38,7 +38,7 @@ Route::get('/seguimientoga',[DocumentController::class,'seguimiento'])->name('do
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('forestudiante',EstudianteController::class);
 Route::resource('fordocente',DocenteController::class);
 Route::resource('forexterno',ExternoController::class);

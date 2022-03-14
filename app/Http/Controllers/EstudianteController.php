@@ -55,11 +55,11 @@ class EstudianteController extends Controller
     {
         //
         $input = $request->all();
-     
 
-      
-        
-        
+
+
+
+
         $tipod = $request->input('tipo_id');
         $titulo = $request->input('titulo');
         $detalle = $request->input('contenido');
@@ -73,7 +73,7 @@ class EstudianteController extends Controller
 
         $tipo = Tipo::where('title',$tipod)->value('id');
         $codigo1 = Str::random(4);
-        
+
         $codigo2 = now()->format('dmY');
         $document = new Document;
         $document->tipo_id=$tipo;
@@ -109,10 +109,10 @@ class EstudianteController extends Controller
         $seguimiento->oficina_derivada = Role::find(2)->name;
         // dd($seguimiento);
         $seguimiento->save();
-
+        $i=1;
         if($request->file()!=[]){
             $adjuntoss=$request->file();
-            $i=1;
+
             foreach ($adjuntoss as $adjuntou){
                 $adjuntou = new Adjunto;
                 $adjuntou->document_id = $document->id;
@@ -123,10 +123,10 @@ class EstudianteController extends Controller
         }
 
 
-        
-        
-        
-        
+
+
+
+
         // $titulo = $request->input('titulo');
         // $contenido = $request->input('contenido');
 
@@ -136,7 +136,7 @@ class EstudianteController extends Controller
         // $document->tipo_id = $tipo;
         // dd($document);
         // $document->save();
-        return redirect()->route('forestudiante.index');
+        return view('enviado',compact('document','estudiante','i'));
     }
 
     /**

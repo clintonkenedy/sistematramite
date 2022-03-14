@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST','class'=>'mt-2','files' => true)) !!}
-                
+
         <div class="card border-dark">
             <h4 class="card-header border-dark">Datos Personales</h4>
             <div class="card-body">
@@ -106,9 +106,9 @@
                         Archivos Adjuntos:
                         </label>
                     </div>
-                   
+
                     <div class="col-md-10" id="masadjuntos">
-                        
+
                         {{-- {!! Form::file('adjunto1',null,array(['class'=>'form-control'])) !!} --}}
                         {{-- {!! Form::file('adjunto1') !!} --}}
                         <input type="file" class="form-control mb-2" aria-label="Upload" name="adjunto1">
@@ -127,7 +127,9 @@
         </div>
         <div class="row mt-4 mb-4">
             <center class="">
-                <button type="submit" class="btn btn-primary">Enviar Tramite</button>
+                <a href="/enviado">
+                    <button type="submit" class="btn btn-primary">Enviar Tramite</button>
+                </a>
                 <a href="/" class="btn btn-danger">Cancelar</a>
             </center>
         </div>
