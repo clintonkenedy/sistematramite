@@ -6,7 +6,7 @@
         <i class=" fas fa-user"></i><span>Usuarios</span>
     </a>
     <a class="nav-link" href="/roles">
-        <i class=" fas fa-lock"></i><span>Roles</span>
+        <i class=" fas fa-lock"></i><span>Oficinas</span>
     </a>
     <a class="nav-link" href="/documents">
         <i class="fas fa-file"></i><span>Documentos</span>

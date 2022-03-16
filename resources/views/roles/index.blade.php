@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Roles</h3>
+            <h3 class="page__heading">Oficinas</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -17,7 +17,7 @@
                             @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef;">
-                                    <th style="color:#fff;">Rol</th>
+                                    <th style="color:#fff;">Oficina</th>
                                     <th style="color:#fff;">Acciones</th>
                                 </thead>
                                 <tbody>

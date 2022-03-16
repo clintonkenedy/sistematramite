@@ -22,6 +22,8 @@
                                     <th style="color:#fff;">CodigoTramite</th>
                                     <th style="color:#fff;">Tipo Doc</th>
                                     <th style="color:#fff;">Nombre</th>
+                                    <th style="color:#fff;">Tramite de:</th>
+
                                     <th style="color:#fff;">Derivado por:</th>
                                     <th style="color:#fff;">Oficina Actual:</th>
                                     <th style="color:#fff;">Acciones</th>
@@ -41,10 +43,13 @@
                                 </td>
                                 @if (!empty($doc->estudiante))
                                     <td>{{ $doc->estudiante->nombre }}</td>
+                                    <td>Estudiante</td>
                                 @elseif (!empty($doc->docente))
                                     <td>{{ $doc->docente->nombre }}</td>
+                                    <td>Docente</td>
                                 @else
                                     <td>{{ $doc->externo->nombre }}</td>
+                                    <td>Externo</td>
                                 @endif
                                 
                                 <td>

@@ -3,7 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading">Documentos</h3>
+            <h3 class="page__heading">Documentos Rechazados</h3>
         </div>
         <div class="section-body">
             <div class="row">
@@ -22,6 +22,7 @@
                                     <th style="color:#fff;">CodigoTramite</th>
                                     <th style="color:#fff;">Tipo Doc</th>
                                     <th style="color:#fff;">Nombre</th>
+                                    <th style="color:#fff;">Tramite de:</th>
                                     <th style="color:#fff;">Derivado por:</th>
                                     <th style="color:#fff;">Oficina Actual:</th>
                                     <th style="color:#fff;">Acciones</th>
@@ -40,7 +41,16 @@
                                     @endif
                                 </td>
 
-                                <td>{{ $doc->estudiante->nombre }}</td>
+                                @if (!empty($doc->estudiante))
+                                    <td>{{ $doc->estudiante->nombre }}</td>
+                                    <td>Estudiante</td>
+                                @elseif (!empty($doc->docente))
+                                    <td>{{ $doc->docente->nombre }}</td>
+                                    <td>Docente</td>
+                                @else
+                                    <td>{{ $doc->externo->nombre }}</td>
+                                    <td>Externo</td>
+                                @endif
                                 <td>
                                     {{ $doc->seguimientos->last()->oficina_derivada }}
                                 </td>
