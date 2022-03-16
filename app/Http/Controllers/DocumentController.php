@@ -20,9 +20,7 @@ class DocumentController extends Controller
         $this->middleware('permission:crear-documento',['only'=>['create','store']]);
         $this->middleware('permission:editar-documento',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-documento',['only'=>['destroy']]);
-        $this->middleware('permission:enviar-documento',['only'=>['update']]);
-
-        
+        $this->middleware('permission:enviar-documento',['only'=>['update']]); 
     }
     /**
      * Display a listing of the resource.
@@ -217,6 +215,7 @@ class DocumentController extends Controller
     {
  
         $seguimiento = $doc->seguimientos->last();
+        $seguimiento->comentario = "Su tramite esta listo";
         $seguimiento->estado = "Finalizado";//finalizado
         $seguimiento->save();
         return redirect()->route('documents.index');

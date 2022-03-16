@@ -7,6 +7,13 @@ use App\Models\Tipo;
 
 class TipoController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-tipo|crear-tipo|editar-tipo|borrar-tipo',['only'=>['index']]);
+        $this->middleware('permission:crear-tipo',['only'=>['create','store']]);
+        $this->middleware('permission:editar-tipo',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-tipo',['only'=>['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
