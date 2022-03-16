@@ -32,7 +32,7 @@
                                         </thead>
                                         <tbody>
                                             <td>
-                                                {{ $document->tipo_id}}
+                                                {{ $document->tipo->title}}
                                             </td>
                                             <td>{{ $estudiante->nombre }}</td>
                                             <td>{{ $document->contenido }}</td>

@@ -12,9 +12,9 @@
                         <div class="card-body">
                 
             
-                        {{-- @can('crear-documento') --}}
+                        @can('crear-tipo')
                         <a class="btn btn-warning" href="{{ route('tipos.create') }}">Nuevo</a>
-                        {{-- @endcan --}}
+                        @endcan
             
                         <table class="table table-striped mt-2">
                                 <thead style="background-color:#6777ef">                                     
@@ -31,15 +31,15 @@
                                 <td>ga</td>
                                 <td>
                                     <form action="{{ route('tipos.destroy',$tipo->id) }}" method="POST">                                        
-                                        {{-- @can('editar-documento') --}}
+                                        @can('editar-tipo')
                                         <a class="btn btn-info" href="{{ route('tipos.edit',$tipo->id) }}">Editar</a>
-                                        {{-- @endcan --}}
+                                        @endcan
 
                                         @csrf
                                         @method('DELETE')
-                                        {{-- @can('borrar-documento') --}}
+                                        @can('borrar-tipo')
                                         <button type="submit" class="btn btn-danger">Borrar</button>
-                                        {{-- @endcan --}}
+                                        @endcan
                                     </form>
                                     
                                 </td>

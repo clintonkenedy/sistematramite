@@ -116,7 +116,8 @@
                                                             
                                                            
                                                             @foreach ( $document->adjuntos as $adj )
-                                                            <p>{{ $adj->get_contenido  }}</p> 
+                                                            {{-- <p>{{ $adj->get_contenido  }}</p>  --}}
+                                                            <p></p>
                                                             <a target="_blank" href="{{ $adj->get_contenido }}">Ajunto descargar</a>
                                                             {{-- <iframe height="1000" width="1000" src="{{ $adj->get_contenido }}"> --}}
 
@@ -137,20 +138,27 @@
                                                     
                                                         <button type="submit" class="btn btn-danger">Rechazar</button>                            
                                                 </form> --}}
+                                                @if ($document->seguimientos->last()->estado=='Pendiente')
                                                 <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#rechazarr">Rechazar</button>
 
                                                 
-
+                                                @can('enviar-documento')
                                                 <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#enviarr">Derivar</button>
 
+                                                @endcan
 
+                                                
                                                 <form action="{{ route('doc.updatefnlzdo',$document->id) }}" method="POST">
                                                     @csrf
                                                     @method('PUT')
                                                     
-                                                        <button  type="submit" class="btn btn-success" data-toggle="modal" data-target="#enviarr">Finalizar</button>                            
+                                                        {{-- <button  type="submit" class="btn btn-success" data-toggle="modal" data-target="#enviarr">Finalizar</button>  --}}
+                                                        <button  type="submit" class="btn btn-success" >Finalizar</button>                            
+
                                                     
-                                                </form>    
+                                                </form>  
+                                                @endif
+                                                  
                                             </div>
                                         </div>
                                     </div>

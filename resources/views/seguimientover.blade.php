@@ -13,7 +13,8 @@
                 <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>El documento N° <span class="badge bg-danger" >{{ $document->codigo_tramite }}</span>:</h3>
+                        
+                        <h3>El documento N° <span class="badge bg-primary" >{{ $document->codigo_tramite }}</span>:</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -33,12 +34,12 @@
                                     <td>{{ $registro->oficina }}</td>
                                     @if ($registro->estado==="Finalizado")
                                         <td><span class="badge bg-success" >{{ $registro->estado }}</span></td>
-                                    @else
-                                        @if ($registro->estado==="Rechazado")
+                                    @elseif ($registro->estado==="Rechazado")
                                         <td><span class="badge bg-danger" >{{ $registro->estado }}</span></td>
-                                        @else
+                                    @elseif ($registro->estado==="Aprobado")
                                         <td><span class="badge bg-primary" >{{ $registro->estado }}</span></td>
-                                        @endif
+                                    @else
+                                        <td><span class="badge bg-warning" >{{ $registro->estado }}</span></td>
                                     @endif
                                     <td>{{ $registro->comentario }}</td>
                                     <td>{{ $registro->updated_at }}</td>
