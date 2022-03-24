@@ -24,6 +24,7 @@
                     }
 
     </style>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     @yield('contenidoform')
@@ -42,7 +43,38 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
     <script>
-        var i = 2;
+        function confirmarenvio(){
+            event.preventDefault();
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                document.enviar.submit();
+            }
+            })
+        }
+        function cancelar(){
+            Swal.fire({
+            title: 'Se borraran los datos del formulario!!!',
+            icon: 'warning',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: 'Ok, no hay problema',
+            denyButtonText: `No...!`,
+            }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                window.location.href = "/";
+            } else if (result.isDenied) {
+            }
+            })
+        }
         function adjuntos(){
 
             const newAdj = document.createElement("input");

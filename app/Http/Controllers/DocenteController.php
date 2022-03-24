@@ -20,8 +20,8 @@ class DocenteController extends Controller
      */
     public function index()
     {
-        
-       
+
+
         $tipos = Tipo::pluck('title','title')->all();
         // dd($tipos);
         // dd($document->seguimientos);
@@ -64,7 +64,7 @@ class DocenteController extends Controller
 
         $tipo = Tipo::where('title',$tipod)->value('id');
         $codigo1 = Str::random(4);
-        
+
         $codigo2 = now()->format('dmY');
         $document = new Document;
         $document->tipo_id=$tipo;
@@ -101,9 +101,9 @@ class DocenteController extends Controller
         //dd($seguimiento);
         $seguimiento->save();
 
+        $i=1;
         if($request->file()!=[]){
             $adjuntoss=$request->file();
-            $i=1;
             foreach ($adjuntoss as $adjuntou){
                 $adjuntou = new Adjunto;
                 $adjuntou->document_id = $document->id;
@@ -112,7 +112,7 @@ class DocenteController extends Controller
                 $i++;
             }
         }
-        return redirect()->route('fordocente.index');
+        return view('enviado',compact('document','docente','i'));
     }
 
     /**

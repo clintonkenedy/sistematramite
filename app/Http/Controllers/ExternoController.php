@@ -50,13 +50,14 @@ class ExternoController extends Controller
         $titulo = $request->input('titulo');
         $detalle = $request->input('contenido');
         $nombres = $request->input('nombre');
+        $apellidos = $request->input('apellido');
         $ruc = $request->input('ruc');
         $celular = $request->input('celular');
         $correo = $request->input('correo');
 
         $tipo = Tipo::where('title',$tipod)->value('id');
         $codigo1 = Str::random(4);
-        
+
         $codigo2 = now()->format('dmY');
         $document = new Document;
         $document->tipo_id=$tipo;
@@ -73,15 +74,16 @@ class ExternoController extends Controller
         $document->save();
 
 
-        $docente = new Externo;
-        $docente->document_id=$document->id;
-        $docente->nombre = $nombres;
-        $docente->ruc = $ruc;
-        $docente->celular = $celular;
-        $docente->correo = $correo;
+        $externo = new Externo;
+        $externo->document_id=$document->id;
+        $externo->nombre = $nombres;
+        $externo->apellido = $apellidos;
+        $externo->ruc = $ruc;
+        $externo->celular = $celular;
+        $externo->correo = $correo;
 
         // dd($estudiante);
-        $docente->save();
+        $externo->save();
 
         $seguimiento = new Seguimiento;
         $seguimiento->document_id = $document->id;
@@ -89,10 +91,10 @@ class ExternoController extends Controller
         $seguimiento->oficina_derivada = Role::find(2)->name;
         //dd($seguimiento);
         $seguimiento->save();
-
+        $i=1;
         if($request->file()!=[]){
             $adjuntoss=$request->file();
-            $i=1;
+
             foreach ($adjuntoss as $adjuntou){
                 $adjuntou = new Adjunto;
                 $adjuntou->document_id = $document->id;
@@ -101,7 +103,7 @@ class ExternoController extends Controller
                 $i++;
             }
         }
-        return redirect()->route('forexterno.index');
+        return view('enviado',compact('document','externo','i'));
     }
 
     /**

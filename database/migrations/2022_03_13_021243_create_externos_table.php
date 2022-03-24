@@ -19,6 +19,7 @@ class CreateExternosTable extends Migration
                 ->constrained('documents');
             // $table->bigInteger('document_id')->unsigned();
             $table->string('nombre');
+            $table->string('apellido');
             $table->string('ruc');
             $table->string('celular');
             $table->string('correo');

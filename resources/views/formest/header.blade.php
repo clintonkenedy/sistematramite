@@ -46,7 +46,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
+              <a href="#" class="nav-link text-white" onclick="confirmarenvio()">
                 Tarifas
               </a>
             </li>
