@@ -34,7 +34,7 @@
                                             <td>
                                                 {{ $document->tipo->title}}
                                             </td>
-                                            <td>{{ $estudiante->nombre }}</td>
+                                            <td>{{ $estudiante->nombre ?? $docente->nombre ?? $externo->nombre ?? ''}}</td>
                                             <td>{{ $document->contenido }}</td>
                                             <td>{{ $i - 1 }}</td>
                                             <td>{{ $document->created_at }}</td>

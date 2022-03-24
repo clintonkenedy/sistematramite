@@ -20,7 +20,7 @@ class DocumentController extends Controller
         $this->middleware('permission:crear-documento',['only'=>['create','store']]);
         $this->middleware('permission:editar-documento',['only'=>['edit','update']]);
         $this->middleware('permission:borrar-documento',['only'=>['destroy']]);
-        $this->middleware('permission:enviar-documento',['only'=>['update']]); 
+        $this->middleware('permission:enviar-documento',['only'=>['update']]);
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +32,7 @@ class DocumentController extends Controller
         $usuario = Auth::user()->id;
         $usuario = User::find($usuario);
         $usuariorol = $usuario->roles->first();
-        
+
         if($usuariorol->id==1){
             // $docs = Document::paginate(5);
             $docs = Document::all();
@@ -51,7 +51,7 @@ class DocumentController extends Controller
         $documents = Document::paginate(5);
         //dd($usuariorol->documentos->first()->seguimientos->last()->estado);
         $tipos = Tipo::all();
-        $oficinas = Role::all();    
+        $oficinas = Role::all();
         return view('documents.index', compact('documents','tipos','oficinas','usuariorol','docs'));
     }
 
@@ -79,7 +79,7 @@ class DocumentController extends Controller
             'tipo_id'=>'required',
             'titulo' => 'required',
             'contenido' => 'required',
-            
+
         ]);
         $nametipo= $request->input('tipo_id');
         $tipo = Tipo::where('title',$nametipo)->value('id');
@@ -110,7 +110,7 @@ class DocumentController extends Controller
         //
        // dd($document->adjuntos->first()->get_contenido);
 
-        $oficinas = Role::all(); 
+        $oficinas = Role::all();
         if($document->estudiante){
             $cliente=$document->estudiante;
         }
@@ -167,13 +167,13 @@ class DocumentController extends Controller
         $seguimiento->document_id = $doc->id;
         $seguimiento->oficina = $request->oficina;
         $seguimiento->oficina_derivada = $doc->seguimientos->last()->oficina;
-        
+
         //dd($doc->seguimientos->last()->oficina);
         $seguimiento->save();
-        
+
         $doc->role_id = Role::where('name',$request->oficina)->value('id');
         $doc->save();
-            
+
 
         // $documentrole->role_id=$request->oficina;
         // dd($documentrole);
@@ -189,17 +189,17 @@ class DocumentController extends Controller
         //     'titulo' => 'required',
         //     'contenido' => 'required',
         // ]);
-       
+
         // $documentid->request;
         $seguimiento = $doc->seguimientos->last();
-        
+
         // $documentrole->document_id=$doc->id;
         // $documentrole->role_id=$request->oficina;
         $seguimiento->estado = "Rechazado";
         if($request->comentario){
             $seguimiento->comentario = $request->comentario;
         }
-        
+
 
 
         //  dd($seguimiento);
@@ -213,7 +213,7 @@ class DocumentController extends Controller
     }
     public function finalizado(Document $doc)
     {
- 
+
         $seguimiento = $doc->seguimientos->last();
         $seguimiento->comentario = "Su tramite esta listo";
         $seguimiento->estado = "Finalizado";//finalizado
@@ -228,7 +228,7 @@ class DocumentController extends Controller
      */
 
     public function seguimiento(Request $request){
-        
+
         $document = Document::firstWhere('codigo_tramite', $request->codseguimiento);
         //dd($document);
 
@@ -252,17 +252,17 @@ class DocumentController extends Controller
                 return $doc->seguimientos->last()->estado == 'Rechazado';
             });
         }
-        
-        
+
+
         $documents = Document::paginate(5);
         // dd($usuariorol->documentos->first()->seguimientos->last()->estado);
         // $plucked = $usuarioroldocs->pluck('speakers.first_day');
         // $filtered = $usuarioroldocs->where('deleted_at', '!=', null);
-        
+
         // $docs = $docspaginate(5);
         // dd($docs);
         $tipos = Tipo::all();
-        $oficinas = Role::all();    
+        $oficinas = Role::all();
         return view('documents.rechazados', compact('docs','tipos','oficinas','usuariorol'));
 
     }
@@ -283,7 +283,7 @@ class DocumentController extends Controller
                 return $doc->seguimientos->last()->estado == 'Finalizado';
             });
         }
-   
+
         return view('documents.finalizados', compact('docs'));
     }
 

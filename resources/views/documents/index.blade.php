@@ -29,7 +29,7 @@
                                     <th style="color:#fff;">Acciones</th>
                               </thead>
                               <tbody>
-                        
+
                             @foreach ($docs as $doc)
                             <tr>
                                 <td style="display: none;">{{ $doc->id }}</td>
@@ -51,12 +51,12 @@
                                     <td>{{ $doc->externo->nombre }}</td>
                                     <td>Externo</td>
                                 @endif
-                                
+
                                 <td>
                                     {{ $doc->seguimientos->last()->oficina_derivada }}
                                 </td>
                                 <td>
-                                    {{ $doc->seguimientos->last()->oficina }},{{ $doc->seguimientos->last()->estado }} 
+                                    {{ $doc->seguimientos->last()->oficina }},{{ $doc->seguimientos->last()->estado }}
                                 </td>
                                 <td>
                                     {{-- {!! Form::open(array('route'=>'doc.update','method'=>'PUT')) !!}
@@ -74,7 +74,7 @@
                                     </div>
                                     {!! Form::close() !!} --}}
                                     {{-- {!! Form::open(array('route'=>'doc.update','method'=>'PUT')) !!} --}}
-                                    
+
 
 
 
@@ -129,7 +129,7 @@
                                 </td> --}}
                             </tr>
                             @endforeach
-                        
+
                             </tbody>
                         </table>
 
@@ -144,3 +144,5 @@
         </div>
     </section>
 @endsection
+
+

@@ -42,7 +42,7 @@ class SeederTablaPermisos extends Seeder
             'enviar-documento',
         ];
         foreach ($permisos as $permiso) {
-            Permission::create(['name'=>$permiso]);   
+            Permission::create(['name'=>$permiso]);
         }
         $usuarioadmin=User::create(['name'=>'admin',
                     'email'=>'admin@gmail.com',
@@ -63,7 +63,7 @@ class SeederTablaPermisos extends Seeder
         $permisos = Permission::pluck('id','id')->all();
         $rol->syncPermissions($permisos);
         $usuariomdpartes->assignRole([$rol->id]);
-        
+
 
         $usuariomdirec=User::create(['name'=>'director',
                     'email'=>'director@gmail.com',
@@ -79,6 +79,7 @@ class SeederTablaPermisos extends Seeder
 
         Tipo::create(['title'=>'Constancia de Estudios']);
         Tipo::create(['title'=>'Constancia de Matricula']);
+        Tipo::create(['title'=>'Otros...']);
 
     }
 }

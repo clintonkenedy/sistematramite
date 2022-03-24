@@ -12,7 +12,7 @@
                 <center><h3>TRAMITE ESTUDIANTES</h3></center>
             </div>
             <div class="card-body">
-                {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST','class'=>'mt-2','files' => true)) !!}
+                {!! Form::open(array('route'=>'forestudiante.store','method'=>'POST','class'=>'mt-2', 'name'=>'enviar' ,'files' => true)) !!}
 
         <div class="card border-dark">
             <h4 class="card-header border-dark">Datos Personales</h4>
@@ -59,7 +59,7 @@
                     <div class="col-md-6 mb-3">
                         <label for="correo" class="form-label">
                         <i class="fa-regular fa-envelope"></i>
-                            Correo Electronico:
+                        Correo Electrónico:
                             <span style="color: red;">*</span>
                         </label>
                         {!! Form::text('correo',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electronico')) !!}
@@ -127,10 +127,8 @@
         </div>
         <div class="row mt-4 mb-4">
             <center class="">
-                <a href="/enviado">
-                    <button type="submit" class="btn btn-primary">Enviar Tramite</button>
-                </a>
-                <a href="/" class="btn btn-danger">Cancelar</a>
+                <input type="submit" value="Enviar" class="btn btn-primary" onclick="confirmarenvio()">
+                <a href="#" class="btn btn-danger" onclick="cancelar()">Cancelar</a>
             </center>
         </div>
         {!! Form::close() !!}

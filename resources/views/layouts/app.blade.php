@@ -18,9 +18,11 @@
 <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
+
     @yield('page_css')
 
     @yield('css')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -79,4 +81,5 @@
         };
     }(jQuery));
 </script>
+@include('layouts.alertas')
 </html>

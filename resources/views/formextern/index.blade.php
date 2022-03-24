@@ -12,7 +12,7 @@
                 <center><h3>TRAMITE EXTERNO</h3></center>
             </div>
             <div class="card-body">
-                {!! Form::open(array('route'=>'forexterno.store','method'=>'POST','class'=>'mt-2','files' => true)) !!}
+                {!! Form::open(array('route'=>'forexterno.store','method'=>'POST','class'=>'mt-2', 'name'=>'enviar' ,'files' => true)) !!}
 
         <div class="card border-dark">
             <h4 class="card-header border-dark">Datos</h4>
@@ -29,9 +29,16 @@
                     <div class="col-md-6 mb-3">
                         <label for="apellido_materno" class="form-label">
                             <i class="fa-regular fa-user"></i>
-                            Nombre:
+                            Nombres:
                             <span style="color: red;">*</span></label>
-                        {!! Form::text('nombre',null,array('class'=>'form-control','placeholder'=>'Ingrese su nombre')) !!}
+                        {!! Form::text('nombre',null,array('class'=>'form-control','placeholder'=>'Ingrese sus nombres')) !!}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="apellido_materno" class="form-label">
+                            <i class="fa-regular fa-user"></i>
+                            Apellidos:
+                            <span style="color: red;">*</span></label>
+                        {!! Form::text('apellido',null,array('class'=>'form-control','placeholder'=>'Ingrese sus apellidos')) !!}
                     </div>
                      <div class="col-md-6 mb-3">
                         <label for="nombre" class="form-label">
@@ -40,10 +47,10 @@
                         <span style="color: red;">*</span></label>
                         {!! Form::text('celular',null,array('class'=>'form-control','placeholder'=>'Ingrese su telefono')) !!}
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-12 mb-3">
                         <label for="dni" class="form-label">
                             <i class="fa-regular fa-envelope"></i>
-                            Correo Elctronico:
+                            Correo Electrónico:
                         <span style="color: red;">*</span>
                         </label>
                         {!! Form::text('correo',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electrónico')) !!}
@@ -127,8 +134,8 @@
         </div>
         <div class="row mt-4 mb-4">
             <center class="">
-                <button class="btn btn-primary">Enviar Tramite</button>
-                <a href="/" class="btn btn-danger">Cancelar</a>
+                <input type="submit" value="Enviar" class="btn btn-primary" onclick="confirmarenvio()">
+                <a href="#" class="btn btn-danger" onclick="cancelar()">Cancelar</a>
             </center>
         </div>
         {!! Form::close() !!}
