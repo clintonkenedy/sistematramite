@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-4" style="background-color: #5d4a5b; padding-bottom: 6em; padding-top: 7em;">
     <a href="/forexterno" class="-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none text-dark">
-        <img alt="image" src="{{ asset('img/man.svg') }}" class="rounded mx-auto d-block">
+        <img alt="image" src="{{ asset('img/man.svg') }}" class="img-fluid rounded mx-auto d-block">
         <div class="container-fluid mt-4">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -28,7 +28,7 @@
     </div>
     <div class="col-md-4" style="background-color: #305f6b; padding-bottom: 8em; padding-top: 7em;">
         <a href="forestudiante" class="-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none text-dark">
-            <img alt="image" src="{{ asset('img/student.svg') }}" class="rounded mx-auto d-block">
+            <img alt="image" src="{{ asset('img/student.svg') }}" class="img-fluid rounded mx-auto d-block">
             <div class="container-fluid mt-4">
                 <div class="row">
                     <div class="col-md-2"></div>
@@ -48,7 +48,7 @@
     </div>
     <div class="col-md-4" style="background-color: #96b2af; padding-bottom: 8em; padding-top: 7em;">
         <a href="fordocente" class="-flex align-items-center my-2 my-lg-0 me-lg-auto text-decoration-none text-dark">
-            <img alt="image" src="{{ asset('img/teacher.svg') }}" class="rounded mx-auto d-block">
+            <img alt="image" src="{{ asset('img/teacher.svg') }}" class="img-fluid rounded mx-auto d-block">
             <div class="container-fluid mt-4">
                 <div class="row">
                     <div class="col-md-2"></div>

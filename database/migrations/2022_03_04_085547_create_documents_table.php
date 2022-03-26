@@ -18,8 +18,8 @@ class CreateDocumentsTable extends Migration
             $table->foreignId('role_id')->nullable()->default('2')->constrained('roles')->nullOnDelete()->cascadeOnUpdate();
             $table->bigInteger('tipo_id')->unsigned()->nullable();
             $table->string('codigo_tramite');
-            $table->string('titulo');
-            $table->text('contenido');
+            $table->string('titulo')->nullable();
+            $table->text('contenido')->nullable();
             $table->foreign('tipo_id')->references('id')->on('tipos')
                 ->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
