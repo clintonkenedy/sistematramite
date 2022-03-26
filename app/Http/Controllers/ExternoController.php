@@ -44,6 +44,31 @@ class ExternoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate(
+            [
+            'ruc' => 'bail|required|digits_between:8,11',
+            'tipo_id' => 'required',
+            'titulo' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+
+            'celular' => 'required|digits_between:9,13',
+            'correo' => 'required|email:rfc,dns',//se puede verificar emails, por dominios xd
+            ],
+            [
+                'ruc.required' => 'El campo DNI/RUC no puede estar vacío',
+                'ruc.digits_between' => 'Ingrese un DNI/RUC válido',
+                'tipo_id.required' => 'El tipo de documento no puede estar vacío',
+                'nombre.required' => 'El campo NOMBRE no puede estar vacío',
+                'apellido.required' => 'El campo APELLIDO no puede estar vacío',
+                'celular.required' => 'El campo CELULAR no puede estar vacío',
+                'celular.digits_between' => 'Ingrese un CELULAR válido',
+                'correo.required' => 'El campo CORREO no puede estar vacío',
+                'correo.email' => 'Ingrese un CORREO válido',
+            ]
+        );
+
         $input = $request->all();
         //dd($input);
         $tipod = $request->input('tipo_id');

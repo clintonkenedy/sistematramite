@@ -11,6 +11,18 @@
             <div class="card-header">
                 <center><h3>TRAMITE EXTERNO</h3></center>
             </div>
+            {{-- @error('sad')
+
+            @enderror --}}
+            {{-- @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif --}}
             <div class="card-body">
                 {!! Form::open(array('route'=>'forexterno.store','method'=>'POST','class'=>'mt-2', 'name'=>'enviar' ,'files' => true)) !!}
 
@@ -24,28 +36,48 @@
                             DNI/RUC:
                         <span style="color: red;">*</span>
                         </label>
-                        {!! Form::text('ruc',null,array('class'=>'form-control','placeholder'=>'Ingrese su documento')) !!}
+                        {!! Form::text('ruc',old('ruc'),array('class'=>'form-control '.($errors->has('ruc') ? 'is-invalid':''),'placeholder'=>'Ingrese su documento')) !!}
+                        @error('ruc')
+                        <span class="invalid-feedback">
+                            <strong> {{$message}} </strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="apellido_materno" class="form-label">
                             <i class="fa-regular fa-user"></i>
                             Nombres:
                             <span style="color: red;">*</span></label>
-                        {!! Form::text('nombre',null,array('class'=>'form-control','placeholder'=>'Ingrese sus nombres')) !!}
+                        {!! Form::text('nombre',old('nombre'),array('class'=>'form-control '.($errors->has('nombre') ? 'is-invalid':''),'placeholder'=>'Ingrese sus nombres')) !!}
+                        @error('nombre')
+                        <span class="invalid-feedback">
+                            <strong> {{$message}} </strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="apellido_materno" class="form-label">
                             <i class="fa-regular fa-user"></i>
                             Apellidos:
                             <span style="color: red;">*</span></label>
-                        {!! Form::text('apellido',null,array('class'=>'form-control','placeholder'=>'Ingrese sus apellidos')) !!}
+                        {!! Form::text('apellido',old('apellido'),array('class'=>'form-control '.($errors->has('apellido') ? 'is-invalid':''),'placeholder'=>'Ingrese sus apellidos')) !!}
+                        @error('apellido')
+                        <span class="invalid-feedback">
+                            <strong> {{$message}} </strong>
+                        </span>
+                        @enderror
                     </div>
                      <div class="col-md-6 mb-3">
                         <label for="nombre" class="form-label">
                             <i class="fa fa-phone"></i>
                             Celular:
                         <span style="color: red;">*</span></label>
-                        {!! Form::text('celular',null,array('class'=>'form-control','placeholder'=>'Ingrese su telefono')) !!}
+                        {!! Form::text('celular',old('celular'),array('class'=>'form-control '.($errors->has('celular') ? 'is-invalid':''),'placeholder'=>'Ingrese su telefono')) !!}
+                        @error('celular')
+                        <span class="invalid-feedback">
+                            <strong> {{$message}} </strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="col-md-12 mb-3">
                         <label for="dni" class="form-label">
@@ -53,32 +85,13 @@
                             Correo Electrónico:
                         <span style="color: red;">*</span>
                         </label>
-                        {!! Form::text('correo',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electrónico')) !!}
+                        {!! Form::text('correo',old('correo'),array('class'=>'form-control '.($errors->has('correo') ? 'is-invalid':''),'placeholder'=>'Ingrese su correo electrónico')) !!}
+                        @error('correo')
+                        <span class="invalid-feedback">
+                            <strong> {{$message}} </strong>
+                        </span>
+                        @enderror
                     </div>
-                    {{--<div class="col-md-6 mb-3">
-                        <label for="celular" class="form-label">
-                            <i class="fa fa-phone"></i>
-                            Celular:
-                            <span style="color: red;">*</span>
-                        </label>
-                        {!! Form::text('celular',null,array('class'=>'form-control','placeholder'=>'Ingrese su celular')) !!}
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="correo" class="form-label">
-                        <i class="fa-regular fa-envelope"></i>
-                            Correo Electronico:
-                            <span style="color: red;">*</span>
-                        </label>
-                        {!! Form::text('correo',null,array('class'=>'form-control','placeholder'=>'Ingrese su correo electronico')) !!}
-                    </div>
-                    <div class="mb-3">
-                        <label for="direccion" class="form-label">
-                        <i class="fa fa-house"></i>
-                        Dirección:
-                        <span style="color: red;">*</span>
-                        </label>
-                        {!! Form::text('direccion',null,array('class'=>'form-control','placeholder'=>'Ingrese su dirección')) !!}
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -105,7 +118,7 @@
                         Detalle:
 
                         </label>
-                        {!! Form::textarea('contenido',null,array('class'=>'form-control','placeholder'=>'OPCIONAL','rows'=>'3')) !!}
+                        {!! Form::textarea('contenido',old('contenido'),array('class'=>'form-control','placeholder'=>'OPCIONAL','rows'=>'3')) !!}
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">
