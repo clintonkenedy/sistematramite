@@ -19,7 +19,7 @@ class DocumentFactory extends Factory
         return [
             'tipo_id'=> 2,
             'codigo_tramite'=> $codigo1.$codigo2,
-            'titulo'=> $this->faker->word(),
+            // 'titulo'=> $this->faker->word(),
             'contenido'=> $this->faker->sentence(),
         ];
     }

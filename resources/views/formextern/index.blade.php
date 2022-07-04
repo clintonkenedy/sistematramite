@@ -99,10 +99,10 @@
             <h4 class="card-header border-dark">Datos del Documento</h4>
             <div class="card-body">
                 <div class="row">
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="titulo" class="form-label">Titulo: </label>
                         {!! Form::text('titulo','titulo',array('class'=>'form-control')) !!}
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                         <label class="form-label" for="inputGroupSelect01">
 

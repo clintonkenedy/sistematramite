@@ -55,10 +55,35 @@ class EstudianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate(
+            [
+            'dni' => 'bail|required|digits_between:8,11',
+            'tipo_id' => 'required',
+            'titulo' => 'required',
+            'nombre' => 'required',
+            'apellido_paterno' => 'required',
+            'apellido_materno' => 'required',
+            'celular' => 'required|digits_between:9,13',
+            'direccion' => 'required',
+            'correo' => 'required|email:rfc,dns',//se puede verificar emails, por dominios xd
+            ],
+            [
+                'dni.required' => 'El campo DNI no puede estar vacío',
+                'ruc.digits_between' => 'Ingrese un DNI/RUC válido',
+                'tipo_id.required' => 'El tipo de documento no puede estar vacío',
+                'nombre.required' => 'El campo NOMBRE no puede estar vacío',
+                'apellido_paterno.required' => 'El APELLIDO PATERNO no puede estar vacío',
+                'apellido_materno.required' => 'El APELLIDO MATERNO no puede estar vacío',
+                'celular.required' => 'El campo CELULAR no puede estar vacío',
+                'celular.digits_between' => 'Ingrese un CELULAR válido',
+                'direccion.required' => 'La dirección no puede estar vacía',
+                'correo.required' => 'El campo CORREO no puede estar vacío',
+                'correo.email' => 'Ingrese un CORREO válido',
+            ]
+        );
+
         $input = $request->all();
-
-
 
 
 
