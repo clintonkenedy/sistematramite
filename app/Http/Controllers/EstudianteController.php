@@ -14,6 +14,8 @@ use Spatie\Permission\Models\Role;
 use App\Models\DocumentRole;
 use App\Models\Seguimiento;
 
+use Illuminate\Support\Facades\Http;
+
 class EstudianteController extends Controller
 {
     /**
@@ -84,8 +86,8 @@ class EstudianteController extends Controller
         $document->titulo = $titulo;
         $document->contenido = $detalle;
         $document->save();
-
-        $document->codigo_tramite = $document->id.$codigo2;
+        $codigo3 = $document->id.$codigo2;
+        $document->codigo_tramite = $codigo3;
         // dd($document);
         $document->save();
 
@@ -123,6 +125,40 @@ class EstudianteController extends Controller
         }
 
 
+
+        $response = Http::withToken('EAAH30KVd70UBAJ9z6zC8yObWlgjZBk9p6f8WKboR4HLNb89Yddhrv75jw42xtkwnSU7yZBGUKWZArkZAAWa9w29wSlbuV0pgzBUmjZCx17FtJkUNxyXhfnJ9eFzqmlmGd6q1fjrobvLRvPURmtW9BqwPe7PUOzOygPcffEwTsYHUQOCHzKcjew3BDDZCoURqRiOZAqYd0CzQwZDZD')
+            ->post('https://graph.facebook.com/v13.0/101298449318580/messages',[
+
+                    "messaging_product"=> "whatsapp",
+                    "to"=> "51".$celular,
+                    "type"=> "template",
+                    "template"=> [
+                        "name" => "enviar_codigo",
+                        "language" => [
+                            "code"=> "es_MX"
+                        ],
+
+                        "components"=> [
+                           [
+                               "type"=> "body",
+                               "parameters"=> [
+                                   [
+                                       "type"=> "text",
+                                       "text"=> $nombres." ".$apellidosp." ".$apellidosm
+                                   ],
+                                   [
+                                       "type"=> "text",
+                                       "text"=> $codigo3
+                                   ]
+                               ]
+                           ]
+
+
+                       ]
+
+                    ]
+
+            ]);
 
 
 
