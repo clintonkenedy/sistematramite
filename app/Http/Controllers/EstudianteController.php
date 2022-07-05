@@ -60,17 +60,17 @@ class EstudianteController extends Controller
             [
             'dni' => 'bail|required|digits_between:8,11',
             'tipo_id' => 'required',
-            'titulo' => 'required',
+            //'titulo' => 'required',
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
             'celular' => 'required|digits_between:9,13',
             'direccion' => 'required',
-            'correo' => 'required|email:rfc,dns',//se puede verificar emails, por dominios xd
+            'correo' => 'required|email:rfc,dns'//se puede verificar emails, por dominios xd
             ],
             [
                 'dni.required' => 'El campo DNI no puede estar vacío',
-                'ruc.digits_between' => 'Ingrese un DNI/RUC válido',
+                'dni.digits_between' => 'Ingrese un DNI válido',
                 'tipo_id.required' => 'El tipo de documento no puede estar vacío',
                 'nombre.required' => 'El campo NOMBRE no puede estar vacío',
                 'apellido_paterno.required' => 'El APELLIDO PATERNO no puede estar vacío',
@@ -88,7 +88,7 @@ class EstudianteController extends Controller
 
 
         $tipod = $request->input('tipo_id');
-        $titulo = $request->input('titulo');
+//        $titulo = $request->input('titulo');
         $detalle = $request->input('contenido');
         $nombres = $request->input('nombre');
         $apellidosp = $request->input('apellido_paterno');
@@ -108,7 +108,7 @@ class EstudianteController extends Controller
         // $document->codigo_tramite=now()->format('mY');
         $document->codigo_tramite=$codigo1;
 
-        $document->titulo = $titulo;
+//        $document->titulo = $titulo;
         $document->contenido = $detalle;
         $document->save();
         $codigo3 = $document->id.$codigo2;
