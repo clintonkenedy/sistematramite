@@ -10,7 +10,7 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\ExternoController;
-
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +22,9 @@ use App\Http\Controllers\ExternoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
 
 Route::get('/', function () {
     return view('welcome');
